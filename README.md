@@ -1,3 +1,4 @@
 # simple_shell
 
-THIS IS FOR PUSING PURPOSES
+This will be our simple shell.
+
