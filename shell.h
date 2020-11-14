@@ -30,5 +30,6 @@ int _strlen(char *s);
 char *_strcat(char *dest, char *src);
 list_t *add_node(list_t **head, const char *str);
 list_t *add_node_end(list_t **head, const char *str);
-char *_strncpy(char *dest, char *src, int n)
+char *_strncpy(char *dest, char *src, int n);
+char *getenviron(char *name);
 #endif
