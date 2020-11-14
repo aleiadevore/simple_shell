@@ -1,7 +1,7 @@
-#include "lists.h"
+#include "shell.h"
 
 /**
- * add_node - adds node
+ * add_node - adds node at beginning of linked list
  * @head: head node
  * @str: string to copy
  * Return: pointer to new node
@@ -17,7 +17,7 @@ list_t *add_node(list_t **head, const char *str)
 		free(newnode);
 		return (NULL);
 	}
-	newnode->str = strdup(str);
+	newnode->token = strdup(str);
 	newnode->next = *head;
 	*head = newnode;
 
@@ -41,7 +41,7 @@ list_t *add_node_end(list_t **head, const char *str)
 		free(lastnode);
 		return (NULL);
 	}
-	lastnode->str = strdup(str);
+	lastnode->token = strdup(str);
 
 	lastnode->next = NULL;
 	if (*head == NULL)
@@ -52,5 +52,25 @@ list_t *add_node_end(list_t **head, const char *str)
 	while (last->next != NULL)
 		last = last->next;
 	last->next = lastnode;
+	lastnode->next = NULL;
 	return (lastnode);
+}
+
+/**
+ * free_list - frees list
+ * @head: head of list
+ * Return: void
+ */
+
+void free_list(list_t *head)
+{
+	list_t *place;
+
+	while (head != NULL)
+	{
+		place = head;
+		head = head->next;
+		free(place->token);
+		free(place);
+	}
 }

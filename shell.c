@@ -7,9 +7,7 @@
  */
 int main(void)
 {
-	int i = 0;
-	char **tokenbuf = NULL;
-	list_t *head = NULL;
+	list_t *head = NULL, *itr = NULL;
         char *b = NULL;
         size_t bufsize;
         int characters;
@@ -26,14 +24,21 @@ int main(void)
 			exit(0);
 		}
 
-		tokenbuf = token(b, characters, head);
-
-		while (tokenbuf[i] != NULL)
+		head = token(b, characters, head);
+		if (!head)
 		{
-			printf("This is token buff %s", tokenbuf[i]);
-			i++;
+			printf("Failed to create head node\n");
+			free(b);
 		}
-		free(tokenbuf);
+/*		getenviron(b, head);*/
+		itr = head;
+		while (itr->token != NULL)
+		{
+			printf("This is token buff %s", itr->token);
+			itr = itr->next;
+		}
+		free(b);
+		free_list(head);
 	}
         return (0);
 }
