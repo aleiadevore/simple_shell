@@ -5,7 +5,7 @@
  *
  */
 extern char **environ;
-char *token(char *input, size_t sz_input)
+char *token(char *input, size_t sz_input, list_t *head)
 {
 	char *tokenbuf, sizeofname;
 	int itr = 0;
@@ -17,14 +17,16 @@ char *token(char *input, size_t sz_input)
 		exit(1);
 	}
 
-	tokenbuf[itr] = strtok(input, " ");
+	tokenbuf = strtok(input, " ");
 
-	itr++;
-	while (tokenbuf[itr] != NULL)
+	add_node_end(&head, input);
+
+	while (tokenbuf != NULL)
 	{
-		tokenbuf[itr] = strtok(NULL, " ");
-		printf("%s", tokenbuf[itr]);
-		itr++;
+		tokenbuf = strtok(NULL, " ");
+		printf("%s", tokenbuf);
+		add_node_end(&head, input);
 	}
-	return (tokenbuf);
+	return (head);
 }
+man 
