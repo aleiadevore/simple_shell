@@ -34,11 +34,12 @@ char *_strcpy(char *dest, char *src)
 	int length = 0, spot;
 
 	while (src[length] != '\0')
-	{
 		length++;
-	}
-	for (spot = 0; spot <= length; spot++)
+
+	for (spot = 0; spot < length; spot++)
 		dest[spot] = src[spot];
+	dest[spot] = '\0';
+
 	return (dest);
 }
 
@@ -48,7 +49,7 @@ char *_strcpy(char *dest, char *src)
  * Return: pointer or null if null
  */
 
-char *_strdup(char *str)
+char *_strdup(const char *str)
 {
 	unsigned int x, length;
 	char  *ptr;
@@ -64,5 +65,6 @@ char *_strdup(char *str)
 	{
 		ptr[x] = str[x];
 	}
+
 	return (ptr);
 }
