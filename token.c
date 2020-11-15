@@ -5,21 +5,10 @@
  * @head: head node of linked list
  */
 extern char **environ;
-list_t *token(char *input, size_t sz_input, list_t *head)
+list_t *token(char *input, list_t *head)
 {
 	char *tokenbuf;
-/*remove code sz_input And from prototype we do no need it to malloc anymore*/
-	(void)sz_input;
 
-	/*tokenbuf = malloc(sizeof(char) * 40);*/
-
-/*	if (!tokenbuf)
-	{
-		printf("Failed to malloc token\n");
-		free(input);
-		exit(1);
-	}
-*/
 	tokenbuf = strtok(input, " ");
 	if (!tokenbuf)
 	{

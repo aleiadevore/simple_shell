@@ -10,7 +10,7 @@ int main(void)
 	list_t *head = NULL, *itr = NULL;
         char *b = NULL;
         size_t bufsize;
-        int characters = 0;
+        int characters = 0, i = 0;
 
 	while (1)
 	{
@@ -21,8 +21,13 @@ int main(void)
 			write(STDOUT_FILENO, "$ ", 2);
 
 		characters = getline(&b, &bufsize, stdin);
+/*This handles the \n char at end of line*/
+		for (;b[i] != '\0'; i++)
+			if (b[i] == '\n' && b[i + 1] == '\0')
+				b[i] = '\0';
 
-		b = strtok(b, "\n");
+
+		/*	b = strtok(b, "\n");*/
 
 		if (characters == EOF)
 		{
@@ -31,14 +36,14 @@ int main(void)
 			exit(0);
 		}
 
-		head = token(b, characters, head);
+		head = token(b, head);
 
 		if (!head)
 		{
 			printf("Failed to create head node\n");
 			free(b);
 		}
-/*		getenviron(b, head);*/
+		getenviron(head);
 		itr = head;
 		printf("itr = [%s]", itr->token);
 		while (itr != NULL)

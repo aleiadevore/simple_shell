@@ -5,34 +5,14 @@
  *
  * Return: is
  */
-char *getenviron(char *name, list_t *head)
+list_t *getenviron(list_t *head)
 {
-	char *env, *ptr, *PATH;
-	char *name_cpy;
-	unsigned int itr = 0, len = 0;
+	while (environ[itr] != NULL)
+        {
+                if (_strncmp(environ[itr], "PATH", 3) == 0)
+                        return (environ[itr]);
+                itr++;
+        }
 
-	for(; name[len] != '\0'; len++)
-		;
-	name_cpy = malloc(sizeof(char) * (len + 1));
-	if (!name_cpy)
-	{
-		free(name_cpy);
-		printf("Failed to alloc name copy\n");
-		exit(3);
-	}
-	_strncpy(name_cpy, name, len);
-	env = strtok(environ[i], "=");
-	while (environ[itr])
-	{
-		if (_strcmp(env, name_cpy))
-		{
-			env = strtok(NULL, "\n");
-			free(name_cpy);
-			return (env);
-		}
-		++i;
-		env = strtok(environ[i], "=");
-	}
-	free(name_cpy);
-	return (NULL);
+	return (head);
 }
