@@ -14,10 +14,10 @@ list_t *add_node(list_t **head, const char *str)
 	newnode = malloc(sizeof(list_t));
 	if (newnode == NULL)
 	{
-		free(newnode);
+		free_list(head);
 		return (NULL);
 	}
-	newnode->token = strdup(str);
+	newnode->token = _strdup(str);
 	newnode->next = *head;
 	*head = newnode;
 
@@ -41,7 +41,7 @@ list_t *add_node_end(list_t **head, const char *str)
 		free(lastnode);
 		return (NULL);
 	}
-	lastnode->token = strdup(str);
+	lastnode->token = _strdup(str);
 
 	lastnode->next = NULL;
 	if (*head == NULL)
@@ -62,15 +62,39 @@ list_t *add_node_end(list_t **head, const char *str)
  * Return: void
  */
 
-void free_list(list_t *head)
+void free_list(list_t **head)
 {
-	list_t *place;
+	list_t *tmp;
 
-	while (head != NULL)
+	if (head != NULL)
 	{
-		place = head;
-		head = head->next;
-		free(place->token);
-		free(place);
+		while (*head != NULL)
+		{
+			tmp = *head;
+			*head = (*head)->next;
+			free(tmp->token);
+			free(tmp);
+		}
+		*head = NULL;
 	}
+}
+
+/**
+ * print_list - prints all elements of list
+ * @h: list to print
+ * Return: number of nodes
+ */
+size_t print_list(const list_t *h)
+{
+	int count = 0;
+	while (h != NULL)
+	{
+		if (h->token == NULL)
+			printf("[0] (nil)\n");
+		else
+			printf("node: [%s]\n", h->token);
+		count++;
+		h = h->next;
+	}
+	return (count);
 }
