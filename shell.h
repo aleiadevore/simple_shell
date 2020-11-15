@@ -25,12 +25,13 @@ typedef struct list_t
 list_t *token(char *input, size_t sz_input, list_t *head);
 int _strcmp(char *s1, char *s2);
 char *_strcpy(char *dest, char *src);
-char *_strdup(char *str);
+char *_strdup(const char *str);
 int _strlen(char *s);
 char *_strcat(char *dest, char *src);
 list_t *add_node(list_t **head, const char *str);
 list_t *add_node_end(list_t **head, const char *str);
-void free_list(list_t *head);
+void free_list(list_t **head);
 char *_strncpy(char *dest, char *src, int n);
 char *getenviron(char *name, list_t *head);
+size_t print_list(const list_t *h);
 #endif
