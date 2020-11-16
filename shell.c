@@ -43,7 +43,7 @@ int main(void)
 			printf("Failed to create head node\n");
 			free(b);
 		}
-		getenviron(head);
+		getenviron("PATH", head);
 		itr = head;
 		printf("itr = [%s]", itr->token);
 		while (itr != NULL)

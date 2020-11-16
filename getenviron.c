@@ -5,14 +5,27 @@
  *
  * Return: is
  */
-list_t *getenviron(list_t *head)
+list_t *getenviron(char *name, list_t *head)
 {
-	while (environ[itr] != NULL)
-        {
-                if (_strncmp(environ[itr], "PATH", 3) == 0)
-                        return (environ[itr]);
-                itr++;
-        }
+	int itr = 0, j = 0;
+	char *envptr = NULL;
 
-	return (head);
+	while (__environ[itr] != NULL)
+	{
+		while(1)
+		{
+			if (name[j] == '\0' && __environ[itr][j] == '=')
+			{
+				envptr = &(__environ[itr][j + 1]);
+				add_node_end(&head, envptr);
+				printf("%s\n", envptr);
+				return (head);
+			}
+			if (name[j] != __environ[itr][j])
+				break;
+			j++;
+		}
+                itr++;
+	}
+		return (NULL);
 }
