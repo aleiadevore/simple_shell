@@ -10,7 +10,7 @@ int main(void)
 	list_t *head = NULL, *itr = NULL;
 	char *b = NULL, n = '\0';
 	size_t bufsize;
-	int characters = 0, i = 0;
+	int characters = 0, i = 0, bool = 0;
 
 	while (1)
 	{
@@ -40,7 +40,7 @@ int main(void)
 			printf("Failed to create head node\n");
 			free(b);
 		}
-		getenviron("PATH", head);
+		bool = checkfunction(head);
 		itr = head;
 		printf("itr = [%s]", itr->token);
 		while (itr != NULL)
@@ -48,7 +48,7 @@ int main(void)
 			printf("This is token buff %s\n", itr->token);
 			itr = itr->next;
 		}
-		free_list(&head);
+		free_list(&head, bool);
 	}
 	return (0);
 }

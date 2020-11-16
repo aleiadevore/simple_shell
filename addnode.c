@@ -14,7 +14,7 @@ list_t *add_node(list_t **head, const char *str)
 	newnode = malloc(sizeof(list_t));
 	if (newnode == NULL)
 	{
-		free_list(head);
+		free_list(head, 0);
 		return (NULL);
 	}
 	newnode->token = _strdup(str);
@@ -62,7 +62,7 @@ list_t *add_node_end(list_t **head, const char *str)
  * Return: void
  */
 
-void free_list(list_t **head)
+void free_list(list_t **head, int bool)
 {
 	list_t *tmp;
 
@@ -72,7 +72,8 @@ void free_list(list_t **head)
 		{
 			tmp = *head;
 			*head = (*head)->next;
-			free(tmp->token);
+			if (bool == 0)
+				free(tmp->token);
 			free(tmp);
 		}
 		*head = NULL;
