@@ -21,7 +21,7 @@ typedef struct list_t
 	struct list_t *next;
 
 } list_t;
-
+/*adding in change for git issue*/
 list_t *token(char *input, list_t *head);
 int _strcmp(char *s1, char *s2);
 char *_strcpy(char *dest, char *src);

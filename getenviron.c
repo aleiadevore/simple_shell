@@ -2,7 +2,7 @@
 /**
  * getenviron - This gets the environment variable from envrion
  * @name: this is the tokenized path
- *
+ * @head: head of linked list
  * Return: is
  */
 list_t *getenviron(char *name, list_t *head)

@@ -28,7 +28,7 @@ int main(void)
 
 
 		/*	b = strtok(b, "\n");*/
-
+/*adding in comment for git issue*/
 		if (characters == EOF)
 		{
 			write(STDOUT_FILENO, "EOF\n", 4);
