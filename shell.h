@@ -10,10 +10,10 @@
 
 extern char **environ;
 /**
- * tokenmach - This stucture holdes the values of the PATH
+ * struct list_t - This stucture holdes the values of the PATH
  * @token: The tokenized Path
  * @next: this is a pointer to the next node in the list
- * Description: This si a singly linked list for the tokenized PATH
+ * Description: This is a singly linked list for the tokenized PATH
  */
 typedef struct list_t
 {

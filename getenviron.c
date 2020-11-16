@@ -12,7 +12,7 @@ list_t *getenviron(char *name, list_t *head)
 
 	while (__environ[itr] != NULL)
 	{
-		while(1)
+		while (1)
 		{
 			if (name[j] == '\0' && __environ[itr][j] == '=')
 			{
@@ -25,7 +25,7 @@ list_t *getenviron(char *name, list_t *head)
 				break;
 			j++;
 		}
-                itr++;
+		itr++;
 	}
-		return (NULL);
+	return (NULL);
 }
