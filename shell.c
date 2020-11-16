@@ -8,7 +8,7 @@
 int main(void)
 {
 	list_t *head = NULL, *itr = NULL;
-	char *b = NULL;
+	char *b = NULL, n = '\0';
 	size_t bufsize;
 	int characters = 0, i = 0;
 
@@ -21,16 +21,17 @@ int main(void)
 			write(STDOUT_FILENO, "$ ", 2);
 
 		characters = getline(&b, &bufsize, stdin);
-
-		for (; b[i] != '\0'; i++)
-			if (b[i] == '\n' && b[i + 1] == '\0')
-				b[i] = '\0';
-
-		if (characters == EOF)
+                if (characters == EOF)
+                {
+                        write(STDOUT_FILENO, "EOF\n", 4);
+                        free(b);
+                        exit(0);
+                }
+		for (i = 0; b[i] != '\0'; i++)
 		{
-			write(STDOUT_FILENO, "EOF\n", 4);
-			free(b);
-			exit(0);
+			if (b[i] == '\n' && b[i + 1] == '\0')
+				b[i] = n;
+			printf("b[i] equals[%c]\n", b[i]);
 		}
 		head = token(b, head);
 
