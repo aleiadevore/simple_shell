@@ -3,8 +3,9 @@
  * token - tokenizes user input
  * @input: input from terminal
  * @head: head node of linked list
+ * Return: is head
  */
-extern char **environ;
+
 list_t *token(char *input, list_t *head)
 {
 	char *tokenbuf;
