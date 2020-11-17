@@ -42,7 +42,7 @@ list_t *add_node_end(list_t **head, const char *str)
 		return (NULL);
 	}
 	lastnode->token = _strdup(str);
-
+	lastnode->cmdtok = NULL;
 	lastnode->next = NULL;
 	if (*head == NULL)
 	{

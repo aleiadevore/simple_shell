@@ -7,6 +7,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <dirent.h>
 
 extern char **environ;
 /**
@@ -36,4 +37,7 @@ char *_strncpy(char *dest, char *src, int n);
 int getenviron(char *name, list_t *node);
 size_t print_list(const list_t *h);
 int checkfunction(list_t *head);
+char *dirsearch(list_t *head);
+list_t *tok_path(list_t *head);
+char *parsedenv(void);
 #endif

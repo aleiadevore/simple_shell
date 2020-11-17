@@ -16,7 +16,7 @@ int main(void)
 	{
 		head = NULL;
 		b = NULL;
-
+		itr = NULL;
 		if (isatty(STDIN_FILENO) == 1)
 			write(STDOUT_FILENO, "$ ", 2);
 
@@ -41,12 +41,14 @@ int main(void)
 			free(b);
 		}
 		checkfunction(head);
+		dirsearch(head);
 		itr = head;
 		printf("itr = [%s]", itr->token);
 		while (itr != NULL)
 		{
 			printf("This is token buff [%s]\n", itr->token);
-			printf("This is token buff [%s]\n", itr->cmdtok);
+			if (itr->cmdtok != NULL)
+				printf("This is parsed PATH [%s]\n", itr->cmdtok);
 			itr = itr->next;
 		}
 		free_list(&head);
