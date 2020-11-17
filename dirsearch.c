@@ -14,23 +14,35 @@ char *dirsearch(list_t *head)
 
 	printf("entered Dirserch function\n");
 	node = tok_path(head);
-	while (node->token != NULL)
+	while (node != NULL)
 	{
 		directory = node->cmdtok;
-		if (directory == NULL)
-                        return (NULL);
-                dir = opendir(directory);
-                if (dir == NULL)
-                        return (NULL);
-                while ((nav = readdir(dir)) != NULL)
-                {
-			if ((_strcmp(nav->d_name, ".")) == 0 ||
-			    (_strcmp(nav->d_name, "..")) == 0)
-				continue;
-			if (_strcmp(node->token, nav->d_name) == 0)
-                                return (_strcat(directory, "/"));
-                }
-                closedir(dir);
+		if (directory != NULL)
+		{
+			printf("node->cmdtok = [%s]\n", directory);
+			dir = opendir(directory);
+			if (dir == NULL)
+			{
+				printf("directory not found\n");
+				return (NULL);
+			}
+			printf("directory not null");
+			while ((nav = readdir(dir)) != NULL)
+			{
+				if ((_strcmp(nav->d_name, ".")) == 0 ||
+				    (_strcmp(nav->d_name, "..")) == 0)
+				{
+					printf("____\nfound a match!\n____\n");
+					continue;
+				}
+				if (_strcmp(node->token, nav->d_name) == 0)
+				{
+					printf("Returning slash\n");
+					return (_strcat(directory, "/"));
+				}
+			}
+			closedir(dir);
+		}
 		node = node->next;
 	}
 	return (NULL);
