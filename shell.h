@@ -21,7 +21,7 @@ typedef struct list_t
 	struct list_t *next;
 
 } list_t;
-/*adding in change for git issue*/
+
 list_t *token(char *input, list_t *head);
 int _strcmp(char *s1, char *s2);
 char *_strcpy(char *dest, char *src);
@@ -30,8 +30,9 @@ int _strlen(char *s);
 char *_strcat(char *dest, char *src);
 list_t *add_node(list_t **head, const char *str);
 list_t *add_node_end(list_t **head, const char *str);
-void free_list(list_t **head);
+void free_list(list_t **head, int bool);
 char *_strncpy(char *dest, char *src, int n);
-list_t *getenviron(char *name, list_t *head);
+int getenviron(char *name, list_t *node);
 size_t print_list(const list_t *h);
+int checkfunction(list_t *head);
 #endif
