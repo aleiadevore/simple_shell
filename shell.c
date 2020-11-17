@@ -52,6 +52,6 @@ int main(void)
 			itr = itr->next;
 		}
 		free_list(&head);
-	}
+rm 	}
 	return (0);
 }
