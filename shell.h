@@ -18,6 +18,7 @@ extern char **environ;
 typedef struct list_t
 {
 	char *token;
+	char *cmdtok;
 	struct list_t *next;
 
 } list_t;
@@ -30,7 +31,7 @@ int _strlen(char *s);
 char *_strcat(char *dest, char *src);
 list_t *add_node(list_t **head, const char *str);
 list_t *add_node_end(list_t **head, const char *str);
-void free_list(list_t **head, int bool);
+void free_list(list_t **head);
 char *_strncpy(char *dest, char *src, int n);
 int getenviron(char *name, list_t *node);
 size_t print_list(const list_t *h);
