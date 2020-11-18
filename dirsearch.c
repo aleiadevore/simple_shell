@@ -8,35 +8,37 @@
 char *dirsearch(list_t *head)
 {
 	list_t *node = NULL;
+	char *file = NULL;
 	struct dirent *nav;
         DIR *dir;
 
-	printf("entered Dirserch function\n");
+
 	node = tok_path(head);
 	while (node != NULL)
 	{
-		printf("This is node->cmdtok [%s]\n", node->cmdtok);
 		if (node->cmdtok != NULL)
 		{
-			printf("node->cmdtok = [%s]\n", node->cmdtok);
-			dir = opendir(node->cmdtok);
+/*			printf("node->cmdtok = [%s]\n", node->cmdtok);
+ */			dir = opendir(node->cmdtok);
 			if (dir == NULL)
 			{
 				printf("directory not found\n");
 				return (NULL);
 			}
-			printf("directory not null");
+			/*	printf("directory not null");*/
 			while ((nav = readdir(dir)) != NULL)
 			{
-				printf("nav->d_name = [%s]", nav->d_name);
+/*				printf("nav->d_name = [%s]", nav->d_name);*/
 				if ((_strcmp(nav->d_name, ".")) == 0 ||
 				    (_strcmp(nav->d_name, "..")) == 0)
-					break;
-				if (_strcmp(node->token, nav->d_name) == 0)
+					continue;
+				printf("_____nav->d_name = [%s], head->token = [%s]____\n", nav->d_name, head->token);
+				if (_strcmp(head->token, nav->d_name) == 0)
 				{
 					printf("Found a match node->token = [%s] nav->d_name [%s]", node->token, nav->d_name);
+					file = node->cmdtok;
 					closedir(dir);
-					return (node->cmdtok);
+					return (file);
 				}
 			}
 			closedir(dir);
@@ -50,7 +52,8 @@ char *dirsearch(list_t *head)
  * @head: a refernce to he linked list which contians path and input
  *
  * Return: head
- */
+nav->d_name, ".")) == 0 ||
+                                    (_strcmp(nav->d_name, "..") */
 list_t *tok_path(list_t *head)
 {
 	list_t *node = head;

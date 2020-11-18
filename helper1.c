@@ -18,14 +18,11 @@ int _strcmp(char *s1, char *s2)
 	while (s1[a] == s2[b])
 	{
 		if (s1[a] == '\0' || s2[b] == '\0')
-		{
-			printf("s1 = [%s]\n s2 = [%s]\n", s1, s2);
 			break;
-		}
 		a++, b++;
 	}
 	c = s1[a] - s2[b];
-	printf("c = [%d]\n", c);
+
 	return (c);
 }
 

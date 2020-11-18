@@ -15,6 +15,7 @@ int _strlen(char *s)
 		s++;
 		length++;
 	}
+
 	return (length);
 }
 
@@ -31,10 +32,13 @@ char *_strcat(char *dest, char *src)
 
 	while (src[srclength] != '\0')
 		srclength++;
+
 	while (dest[destlength] != '\0')
 		destlength++;
+
 	for (i = 0 ; i <= srclength && src[i] != '\0' ; i++)
 		dest[destlength + i] = src[i];
+
 	dest[destlength + i] = '\0';
 
 	return (dest);
@@ -52,7 +56,9 @@ char *_strncpy(char *dest, char *src, int n)
 
 	for (i = 0; i < n && src[i] != '\0'; i++)
 		dest[i] = src[i];
+
 	for (; i < n; i++)
 		dest[i] = '\0';
+
 	return (dest);
 }
