@@ -44,14 +44,14 @@ int main(void)
 		dirsearch(head);
 		itr = head;
 		printf("itr = [%s]", itr->token);
-		while (itr != NULL)
+/*		while (itr != NULL)
 		{
 			printf("This is token buff [%s]\n", itr->token);
 			if (itr->cmdtok != NULL)
 				printf("This is parsed PATH [%s]\n", itr->cmdtok);
 			itr = itr->next;
 		}
-		free_list(&head);
+*/		free_list(&head);
  	}
 	return (0);
 }

@@ -18,7 +18,7 @@ list_t *token(char *input, list_t *head)
 		exit(4);
 	}
 	printf("Tokenbuff: %s\n", tokenbuf);
-	add_node_end(&head, tokenbuf);
+	add_node_end(&head, tokenbuf, NULL);
 
 	while (tokenbuf != NULL)
 	{
@@ -26,7 +26,7 @@ list_t *token(char *input, list_t *head)
 		tokenbuf = strtok(NULL, " ");
 		if (!tokenbuf)
 			break;
-		add_node_end(&head, tokenbuf);
+		add_node_end(&head, tokenbuf, NULL);
 		printf("%s\n", tokenbuf);
 	}
 

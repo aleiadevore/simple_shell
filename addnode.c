@@ -31,7 +31,7 @@ list_t *add_node(list_t **head, const char *str)
  * Return: pointer to node or NULL
  */
 
-list_t *add_node_end(list_t **head, const char *str)
+list_t *add_node_end(list_t **head, const char *str, const char *cmd)
 {
 	list_t *lastnode, *last = *head;
 
@@ -42,7 +42,7 @@ list_t *add_node_end(list_t **head, const char *str)
 		return (NULL);
 	}
 	lastnode->token = _strdup(str);
-	lastnode->cmdtok = NULL;
+	lastnode->cmdtok = _strdup(cmd);
 	lastnode->next = NULL;
 	if (*head == NULL)
 	{
@@ -73,9 +73,8 @@ void free_list(list_t **head)
 			tmp = *head;
 			*head = (*head)->next;
 			free(tmp->token);
-/*
 			if (tmp->cmdtok != NULL)
-			free(tmp->cmdtok);*/
+				free(tmp->cmdtok);
 			free(tmp);
 		}
 		*head = NULL;

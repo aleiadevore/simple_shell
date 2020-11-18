@@ -10,17 +10,16 @@ char *dirsearch(list_t *head)
 	list_t *node = NULL;
 	struct dirent *nav;
         DIR *dir;
-        char *directory = NULL;
 
 	printf("entered Dirserch function\n");
 	node = tok_path(head);
 	while (node != NULL)
 	{
-		directory = node->cmdtok;
-		if (directory != NULL)
+		printf("This is node->cmdtok [%s]\n", node->cmdtok);
+		if (node->cmdtok != NULL)
 		{
-			printf("node->cmdtok = [%s]\n", directory);
-			dir = opendir(directory);
+			printf("node->cmdtok = [%s]\n", node->cmdtok);
+			dir = opendir(node->cmdtok);
 			if (dir == NULL)
 			{
 				printf("directory not found\n");
@@ -29,16 +28,15 @@ char *dirsearch(list_t *head)
 			printf("directory not null");
 			while ((nav = readdir(dir)) != NULL)
 			{
+				printf("nav->d_name = [%s]", nav->d_name);
 				if ((_strcmp(nav->d_name, ".")) == 0 ||
 				    (_strcmp(nav->d_name, "..")) == 0)
-				{
-					printf("____\nfound a match!\n____\n");
-					continue;
-				}
+					break;
 				if (_strcmp(node->token, nav->d_name) == 0)
 				{
-					printf("Returning slash\n");
-					return (_strcat(directory, "/"));
+					printf("Found a match node->token = [%s] nav->d_name [%s]", node->token, nav->d_name);
+					closedir(dir);
+					return (node->cmdtok);
 				}
 			}
 			closedir(dir);
@@ -67,15 +65,15 @@ list_t *tok_path(list_t *head)
 		printf("tokenbuf failed, [%s]\n", tokenbuf);
 		exit(5);
 	}
-	add_node_end(&head, tokenbuf);
+	add_node_end(&head, NULL, tokenbuf);
 	printf("before whileloop\n");
 	while (tokenbuf != NULL)
 	{
 		tokenbuf = strtok(NULL, ":");
-		printf("This is in tok_path %s\n", tokenbuf);
+		printf("Parsed PATH by [:] [%s]\n", tokenbuf);
 		if (!tokenbuf)
 			break;
-		add_node_end(&head, tokenbuf);
+		add_node_end(&head, NULL, tokenbuf);
 	}
 	return (head);
 }
