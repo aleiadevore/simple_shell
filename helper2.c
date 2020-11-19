@@ -35,10 +35,11 @@ char *_strcat(char *dest, char *src)
 
 	while (dest[destlength] != '\0')
 		destlength++;
-
 	for (i = 0 ; i <= srclength && src[i] != '\0' ; i++)
+	{
 		dest[destlength + i] = src[i];
-
+		printf("dest[destlength + i] = %c\n", dest[destlength + i]);
+	}
 	dest[destlength + i] = '\0';
 
 	return (dest);

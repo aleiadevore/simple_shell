@@ -38,7 +38,8 @@ char *dirsearch(list_t *head)
 					printf("Found a match node->token = [%s] nav->d_name [%s]", node->token, nav->d_name);
 					file = node->cmdtok;
 					closedir(dir);
-					return (file);
+					excmd(head, file);
+					return(file);
 				}
 			}
 			closedir(dir);

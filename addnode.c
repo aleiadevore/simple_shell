@@ -42,6 +42,7 @@ list_t *add_node_end(list_t **head, const char *str, const char *cmd)
 		return (NULL);
 	}
 	lastnode->token = _strdup(str);
+	lastnode->envpth = NULL;
 	lastnode->cmdtok = _strdup(cmd);
 	lastnode->next = NULL;
 	if (*head == NULL)

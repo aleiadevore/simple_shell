@@ -18,7 +18,7 @@ int getenviron(char *name, list_t *node)
 			if (name[j] == '\0' && __environ[itr][j] == '=')
 			{
 /*				envptr = &(__environ[itr][j + 1]);*/
-				node->cmdtok = &(__environ[itr][j + 1]);
+				node->envpth = &(__environ[itr][j + 1]);
 				printf("%s\n", node->token);
 				return (1);
 			}

@@ -10,7 +10,7 @@ int main(void)
 	list_t *head = NULL, *itr = NULL;
 	char *b = NULL, n = '\0';
 	size_t bufsize;
-	int characters = 0, i = 0;
+	int characters = 0, i = 0, bool = 0;
 
 	while (1)
 	{
@@ -40,8 +40,9 @@ int main(void)
 			printf("Failed to create head node\n");
 			free(b);
 		}
-		checkfunction(head);
-		dirsearch(head);
+		bool = checkfunction(head);
+		if (bool != 1)
+			dirsearch(head);
 		itr = head;
 		printf("itr = [%s]", itr->token);
 		while (itr != NULL)
@@ -49,6 +50,8 @@ int main(void)
 			printf("This is token buff [%s]\n", itr->token);
 			if (itr->cmdtok != NULL)
 				printf("This is parsed PATH [%s]\n", itr->cmdtok);
+			if (itr->envpth != NULL)
+				printf("This is the environmental thingy [%s]\n", itr->envpth);
 			itr = itr->next;
 		}
 		free_list(&head);

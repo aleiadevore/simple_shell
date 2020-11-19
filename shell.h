@@ -19,6 +19,7 @@ extern char **environ;
 typedef struct list_t
 {
 	char *token;
+	char *envpth;
 	char *cmdtok;
 	struct list_t *next;
 
@@ -40,4 +41,7 @@ int checkfunction(list_t *head);
 char *dirsearch(list_t *head);
 list_t *tok_path(list_t *head);
 char *parsedenv(void);
+int excmd(list_t *head, char *cmd);
+char *append(list_t *head);
+
 #endif
