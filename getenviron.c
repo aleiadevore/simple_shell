@@ -30,4 +30,3 @@ int getenviron(char *name, list_t *node)
 	}
 	return (0);
 }
-

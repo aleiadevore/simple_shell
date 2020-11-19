@@ -42,6 +42,5 @@ char *dirsearch(list_t *head);
 list_t *tok_path(list_t *head);
 char *parsedenv(void);
 int excmd(list_t *head, char *cmd);
-char *append(list_t *head);
-
+char *append(list_t *head, char *cmd);
 #endif
