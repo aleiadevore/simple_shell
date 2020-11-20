@@ -9,6 +9,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <dirent.h>
+#include <sys/wait.h>
 
 extern char **environ;
 /**
@@ -44,4 +45,5 @@ list_t *tok_path(list_t *head);
 char *parsedenv(void);
 int excmd(list_t *head, char *cmd);
 char *append(list_t *head, char *cmd);
+char *_strstr(char *haystack, char *needle);
 #endif

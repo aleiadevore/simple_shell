@@ -13,14 +13,14 @@ char *dirsearch(list_t *head)
 	struct dirent *nav;
         DIR *dir;
 
-
 	node = tok_path(head);
+	printf("Inside diresearch\n");
 	while (node != NULL)
 	{
 		if (node->cmdtok != NULL)
 		{
-/*			printf("node->cmdtok = [%s]\n", node->cmdtok);
- */			dir = opendir(node->cmdtok);
+			printf("node->cmdtok = [%s]\n", node->cmdtok);
+			dir = opendir(node->cmdtok);
 			if (dir == NULL)
 			{
 				printf("directory not found\n");
@@ -29,7 +29,7 @@ char *dirsearch(list_t *head)
 			/*	printf("directory not null");*/
 			while ((nav = readdir(dir)) != NULL)
 			{
-/*				printf("nav->d_name = [%s]", nav->d_name);*/
+				printf("nav->d_name = [%s]", nav->d_name);
 				if ((_strcmp(nav->d_name, ".")) == 0 ||
 				    (_strcmp(nav->d_name, "..")) == 0)
 					continue;
@@ -54,17 +54,41 @@ char *dirsearch(list_t *head)
  * @head: a refernce to he linked list which contians path and input
  *
  * Return: head
-nav->d_name, ".")) == 0 ||
-                                    (_strcmp(nav->d_name, "..") */
+ */
+
 list_t *tok_path(list_t *head)
 {
-	list_t *node = head;
-	char *tokenbuf = NULL, *ptrpath = NULL;
+	int itr;
+/*	list_t *node = head;*/
+	char *tokenbuf = NULL, *ptrpath = NULL, *ptr;
 	printf("made it into tokpath\n");
-	for (;node != NULL; node = node->next)
-		;
-	ptrpath = parsedenv();
-	tokenbuf = strtok(ptrpath, ":");
+/*	for (;node != NULL; node = node->next)
+	;*/
+	for (itr = 0; __environ[itr] != NULL; itr++)
+	{
+		ptr = _strstr(__environ[itr], "PATH=");
+		if (ptr != 0)
+			break;
+	}
+	ptrpath = malloc(sizeof(char) * (_strlen(ptr) + 1));
+	_strcpy(ptrpath, ptr);
+
+	tokenbuf = strtok(ptrpath, "=");
+	if (!tokenbuf)
+	{
+		printf("tokenbuf failed, [%s]\n", tokenbuf);
+		exit(5);
+	}
+        while (tokenbuf != NULL)
+        {
+                tokenbuf = strtok(NULL, ":");
+                printf("Parsed PATH by [:] [%s]\n", tokenbuf);
+                if (!tokenbuf)
+                        break;
+		add_node_end(&head, NULL, tokenbuf);
+        }
+
+/*	tokenbuf = strtok(ptrpath, ":");
 	if(!tokenbuf)
 	{
 		printf("tokenbuf failed, [%s]\n", tokenbuf);
@@ -80,6 +104,7 @@ list_t *tok_path(list_t *head)
 			break;
 		add_node_end(&head, NULL, tokenbuf);
 	}
+*/	free(ptrpath);
 	return (head);
 }
 /**
@@ -101,8 +126,9 @@ char *parsedenv(void)
 		{
 			if (name[j] == '\0' && __environ[itr][j] == '=')
 			{
-/*                              envptr = &(__environ[itr][j + 1]);*/
-				ptrpath = &(__environ[itr][j + 1]);
+				ptrpath = malloc(sizeof(char) * (_strlen(&(__environ[itr][j + 1]) + 6)));
+				_strcpy(ptrpath, "PATH=");
+				_strcat(ptrpath, &(__environ[itr][j + 1]));
 				printf("This is ptrpath in the parsed env [%s]\n", ptrpath);
 				return (ptrpath);
 			}
