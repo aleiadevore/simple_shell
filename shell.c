@@ -6,7 +6,7 @@
  * returns commands request
  * Return: 0
  */
-int main(void)
+int main(int ac, char **av, char **env)
 {
 	list_t *head = NULL, *itr = NULL;
 	char *b = NULL, n = '\0';

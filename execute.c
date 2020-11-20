@@ -5,7 +5,6 @@ char *append(list_t *head, char *cmd)
 {
 	char *ptr = NULL;
 
-	
         ptr = malloc(sizeof(char) * (_strlen(head->token) + _strlen(cmd) + 2));
 	_strcpy(ptr, cmd);
 	_strcat(ptr, "/");

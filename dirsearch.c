@@ -29,11 +29,11 @@ char *dirsearch(list_t *head)
 			/*	printf("directory not null");*/
 			while ((nav = readdir(dir)) != NULL)
 			{
-				printf("nav->d_name = [%s]", nav->d_name);
+				/*	printf("nav->d_name = [%s]", nav->d_name);*/
 				if ((_strcmp(nav->d_name, ".")) == 0 ||
 				    (_strcmp(nav->d_name, "..")) == 0)
 					continue;
-				printf("_____nav->d_name = [%s], head->token = [%s]____\n", nav->d_name, head->token);
+/*				printf("_____nav->d_name = [%s], head->token = [%s]____\n", nav->d_name, head->token);*/
 				if (_strcmp(head->token, nav->d_name) == 0)
 				{
 					printf("Found a match node->token = [%s] nav->d_name [%s]", node->token, nav->d_name);
@@ -64,12 +64,18 @@ list_t *tok_path(list_t *head)
 	printf("made it into tokpath\n");
 /*	for (;node != NULL; node = node->next)
 	;*/
+	printf("This is environ: [[[%s]]]", *__environ);
 	for (itr = 0; __environ[itr] != NULL; itr++)
 	{
-		ptr = _strstr(__environ[itr], "PATH=");
-		if (ptr != 0)
-			break;
+		if (__environ[itr][0] == 'P')
+		{
+
+			ptr = _strstr(__environ[itr], "PATH=");
+			if (ptr != 0)
+				break;
+		}
 	}
+	printf("This is PATH [[%s]]\n", ptr);
 	ptrpath = malloc(sizeof(char) * (_strlen(ptr) + 1));
 	_strcpy(ptrpath, ptr);
 
