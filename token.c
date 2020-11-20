@@ -6,6 +6,7 @@
  * Return: is head
  */
 
+
 list_t *token(char *input, list_t *head)
 {
 	char *tokenbuf;

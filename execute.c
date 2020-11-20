@@ -1,5 +1,6 @@
 #include "shell.h"
 
+
 char *append(list_t *head, char *cmd)
 {
 	char *ptr = NULL;
