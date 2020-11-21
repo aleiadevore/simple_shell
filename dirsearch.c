@@ -1,5 +1,4 @@
 #include "shell.h"
-
 /**
  * dirsearch - This function looks for a alias match along the PATH
  * @head: this is the linked list reference
@@ -11,42 +10,46 @@ char *dirsearch(list_t *head)
 	list_t *node = NULL;
 	char *file = NULL;
 	struct dirent *nav;
-        DIR *dir;
+	DIR *dir;
 
-	node = tok_path(head);
-	printf("Inside diresearch\n");
-	while (node != NULL)
+	tok_path(head);
+	node = head;
+	printf("node->cmdtok = [%s]\n", node->cmdtok);
+	if (pathval(head) == 0)
 	{
-		if (node->cmdtok != NULL)
+		for(; node != NULL; node = node->next)
 		{
-			printf("node->cmdtok = [%s]\n", node->cmdtok);
-			dir = opendir(node->cmdtok);
-			if (dir == NULL)
+			if (node->cmdtok != NULL)
 			{
-				printf("directory not found\n");
-				return (NULL);
-			}
-			/*	printf("directory not null");*/
-			while ((nav = readdir(dir)) != NULL)
-			{
-				/*	printf("nav->d_name = [%s]", nav->d_name);*/
-				if ((_strcmp(nav->d_name, ".")) == 0 ||
-				    (_strcmp(nav->d_name, "..")) == 0)
-					continue;
-/*				printf("_____nav->d_name = [%s], head->token = [%s]____\n", nav->d_name, head->token);*/
-				if (_strcmp(head->token, nav->d_name) == 0)
+				printf("made it into if statment\n");
+				dir = opendir(node->cmdtok);
+				if (dir == NULL)
 				{
-					printf("Found a match node->token = [%s] nav->d_name [%s]", node->token, nav->d_name);
-					file = node->cmdtok;
-					closedir(dir);
-					excmd(head, file);
-					return(file);
+					perror("directory not found\n");
+					return (NULL);
 				}
+
+				while ((nav = readdir(dir)) != NULL)
+				{
+					printf("nav->d_name: [%s]\nhead->token: [%s]\n",nav->d_name, head->token);
+					/*		if (_strcmp(nav->d_name, ".") == 0 || _strcmp(nav->d_name, "..") == 0)
+							continue;*/
+					if (_strcmp(head->token, nav->d_name) == 0)
+					{
+						printf("we made it insode the last if statment\n");
+						file = node->cmdtok;
+						closedir(dir);
+						excmd(head, file);
+						return (file);
+					}
+				}
+				closedir(dir);
 			}
-			closedir(dir);
+			/*node = node->next;*/
 		}
-		node = node->next;
 	}
+	write(STDOUT_FILENO, head->token, _strlen(head->token));
+	perror(": Command not found");
 	return (NULL);
 }
 /**
@@ -59,12 +62,8 @@ char *dirsearch(list_t *head)
 list_t *tok_path(list_t *head)
 {
 	int itr;
-/*	list_t *node = head;*/
 	char *tokenbuf = NULL, *ptrpath = NULL, *ptr;
-	printf("made it into tokpath\n");
-/*	for (;node != NULL; node = node->next)
-	;*/
-	printf("This is environ: [[[%s]]]", *__environ);
+
 	for (itr = 0; __environ[itr] != NULL; itr++)
 	{
 		if (__environ[itr][0] == 'P')
@@ -75,74 +74,74 @@ list_t *tok_path(list_t *head)
 				break;
 		}
 	}
-	printf("This is PATH [[%s]]\n", ptr);
+
 	ptrpath = malloc(sizeof(char) * (_strlen(ptr) + 1));
+
 	_strcpy(ptrpath, ptr);
 
 	tokenbuf = strtok(ptrpath, "=");
 	if (!tokenbuf)
 	{
-		printf("tokenbuf failed, [%s]\n", tokenbuf);
+		perror("tokenbuf failed");
 		exit(5);
 	}
-        while (tokenbuf != NULL)
-        {
-                tokenbuf = strtok(NULL, ":");
-                printf("Parsed PATH by [:] [%s]\n", tokenbuf);
-                if (!tokenbuf)
-                        break;
-		add_node_end(&head, NULL, tokenbuf);
-        }
-
-/*	tokenbuf = strtok(ptrpath, ":");
-	if(!tokenbuf)
-	{
-		printf("tokenbuf failed, [%s]\n", tokenbuf);
-		exit(5);
-	}
-	add_node_end(&head, NULL, tokenbuf);
-	printf("before whileloop\n");
 	while (tokenbuf != NULL)
 	{
 		tokenbuf = strtok(NULL, ":");
-		printf("Parsed PATH by [:] [%s]\n", tokenbuf);
 		if (!tokenbuf)
 			break;
+		printf("tokenbuf is: [%s]\n", tokenbuf);
 		add_node_end(&head, NULL, tokenbuf);
 	}
-*/	free(ptrpath);
+
+	free(ptrpath);
 	return (head);
 }
-/**
- * getenviron - This gets the environment variable from envrion
- * @name: this is the tokenized path
- * @head: head of linked list
- * Return: is
- */
-char *parsedenv(void)
-{
-	int itr = 0, j = 0;
-	char *name = "PATH", *ptrpath = NULL;
-/*      char *envptr = NULL;*/
 
-	printf("name is %s\n", name);
-	while (__environ[itr] != NULL)
+int pathval(list_t *head)
+{
+	int val = 0,status;
+	char *ptr = head->token;
+	pid_t child;
+	list_t *node = head->next;
+	char *argv[3] = {'\0', '\0', '\0'};
+
+
+	if (ptr[0] == '/')
 	{
-		while (1)
+		val = access(head->token, F_OK);
+		if (val != 0)
 		{
-			if (name[j] == '\0' && __environ[itr][j] == '=')
-			{
-				ptrpath = malloc(sizeof(char) * (_strlen(&(__environ[itr][j + 1]) + 6)));
-				_strcpy(ptrpath, "PATH=");
-				_strcat(ptrpath, &(__environ[itr][j + 1]));
-				printf("This is ptrpath in the parsed env [%s]\n", ptrpath);
-				return (ptrpath);
-			}
-                        if (name[j] != __environ[itr][j])
-				break;
-			j++;
+			perror("File does not exist\n");
 		}
-                itr++;
+		else
+		{
+			argv[0] = head->token;
+			argv[1] = node->token;
+
+			child = fork();
+
+			if (child == -1)
+			{
+				perror("Error");
+			}
+
+			else if (child == 0)
+			{
+				if (execve(argv[0], argv, NULL) != -1)
+					perror("Error");
+				sleep(2);
+			}
+			else
+			{
+/*NOTE TO FUTURE SELVES: REPLACE PRINT statement*/
+				wait(&status);
+				if (WIFEXITED(status))
+					printf("Exit status: %d\n", WEXITSTATUS(status));
+			}
+
+		}
+		return (1);
 	}
-        return (NULL);
+	return (0);
 }

@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * checkfunction: This checks for builtins in the PATH
+ * checkfunction - This checks for builtins in the PATH
  * @head: This is the linked list being passed in
  * Return: is an integer
  */
@@ -13,7 +13,7 @@ int checkfunction(list_t *head)
 
 	while (itr != NULL)
 	{
-  		str = itr->token;
+		str = itr->token;
 		if (_strcmp("PATH", str) == 0 || _strcmp("XDG_SESSION_ID", str) == 0)
 			getenviron(str, itr);
 		if (_strcmp("TERM", str) == 0 || _strcmp("TERM", str) == 0)
@@ -38,5 +38,5 @@ int checkfunction(list_t *head)
 			getenviron(str, itr);
 		itr = itr->next;
 	}
-	return(0);
+	return (0);
 }

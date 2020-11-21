@@ -9,15 +9,12 @@
 
 int _strlen(char *s)
 {
-	int length = 0;
+	int len = 0;
 
-	while (*s != '\0')
-	{
-		s++;
-		length++;
-	}
+	while (s[len] != '\0')
+		len++;
 
-	return (length);
+	return (len);
 }
 
 /**
@@ -39,7 +36,6 @@ char *_strcat(char *dest, char *src)
 	for (i = 0 ; i <= srclength && src[i] != '\0' ; i++)
 	{
 		dest[destlength + i] = src[i];
-		printf("dest[destlength + i] = %c\n", dest[destlength + i]);
 	}
 	dest[destlength + i] = '\0';
 
