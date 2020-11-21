@@ -1,0 +1,10 @@
+.TH man 1 "21 November 2020" "1" "simple shell man page"
+.SH NAME
+.B simple shell
+- produces output according to a format.
+.SH SYNOPSIS
+shell [options][file]
+.SH DESCRIPTION
+The
+.B simple shell
+executes commands read from standard input or from a file.
