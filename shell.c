@@ -17,11 +17,11 @@ int main(void)
 	{
 		head = NULL;
 		b = NULL;
-
 		if (isatty(STDIN_FILENO) == 1)
 			write(STDOUT_FILENO, "$ ", 2);
-
 		characters = getline(&b, &bufsize, stdin);
+		if (characters == -1)
+			exit(1);
 		if (characters == EOF)
 		{
 			write(STDOUT_FILENO, "EOF\n", 4);
@@ -40,7 +40,7 @@ int main(void)
 			perror("Failed to create head node\n");
 			free(b);
 		}
-
+		bool = envfunction(head);
 		bool = checkfunction(head);
 		if (bool != 1)
 			dirsearch(head);

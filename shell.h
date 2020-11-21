@@ -46,4 +46,7 @@ char *append(list_t *head, char *cmd);
 char *_strstr(char *haystack, char *needle);
 int getenviron(char *name, list_t *node);
 int pathval(list_t *head);
+int _putchar(char c);
+int envfunction(list_t *head);
+
 #endif

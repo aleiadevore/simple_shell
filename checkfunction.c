@@ -1,6 +1,34 @@
 #include "shell.h"
 
 /**
+ * envfunction - prints environment
+ * @head: head of linked list
+ *
+ * Return: 1 if env input, 0 if not
+ */
+
+int envfunction(list_t *head)
+{
+	int i, j;
+	list_t *node;
+
+	for (node = head; node != NULL; node = node->next)
+	{
+		if (_strcmp("env", node->token) == 0)
+		{
+			for (i = 0; __environ[i] != NULL; i++)
+			{
+				for (j = 0; __environ[i][j] != '\0'; j++)
+					_putchar(__environ[i][j]);
+				_putchar('\n');
+			}
+			return (1);
+		}
+	}
+	return (0);
+}
+
+/**
  * checkfunction - This checks for builtins in the PATH
  * @head: This is the linked list being passed in
  * Return: is an integer

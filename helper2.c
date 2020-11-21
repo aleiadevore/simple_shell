@@ -86,3 +86,15 @@ char *_strstr(char *haystack, char *needle)
 	}
 	return (0);
 }
+
+/**
+ * _putchar - prints one character
+ * @c: character to print
+ *
+ * Return: 0 on success of -1 on fail
+ */
+
+int _putchar(char c)
+{
+	return (write(1, &c, 1));
+}

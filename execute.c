@@ -58,12 +58,7 @@ int excmd(list_t *head, char *cmd)
 		sleep(2);
 	}
 	else
-	{
-/*NOTE TO FUTURE SELVES: REPLACE PRINT statement*/
 		wait(&status);
-		if (WIFEXITED(status))
-			printf("Exit status: %d\n", WEXITSTATUS(status));
-	}
 	free(ptr);
 
 	return (bool);

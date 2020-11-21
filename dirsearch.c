@@ -14,29 +14,26 @@ char *dirsearch(list_t *head)
 
 	tok_path(head);
 	node = head;
-	printf("node->cmdtok = [%s]\n", node->cmdtok);
 	if (pathval(head) == 0)
 	{
-		for(; node != NULL; node = node->next)
+		for (; node != NULL; node = node->next)
 		{
 			if (node->cmdtok != NULL)
 			{
-				printf("made it into if statment\n");
 				dir = opendir(node->cmdtok);
 				if (dir == NULL)
 				{
 					perror("directory not found\n");
 					return (NULL);
 				}
-
 				while ((nav = readdir(dir)) != NULL)
 				{
-					printf("nav->d_name: [%s]\nhead->token: [%s]\n",nav->d_name, head->token);
-					/*		if (_strcmp(nav->d_name, ".") == 0 || _strcmp(nav->d_name, "..") == 0)
-							continue;*/
+					if (_strcmp(nav->d_name, ".") == 0)
+						continue;
+					else if (_strcmp(nav->d_name, "..") == 0)
+						continue;
 					if (_strcmp(head->token, nav->d_name) == 0)
 					{
-						printf("we made it insode the last if statment\n");
 						file = node->cmdtok;
 						closedir(dir);
 						excmd(head, file);
@@ -45,7 +42,6 @@ char *dirsearch(list_t *head)
 				}
 				closedir(dir);
 			}
-			/*node = node->next;*/
 		}
 	}
 	write(STDOUT_FILENO, head->token, _strlen(head->token));
@@ -90,7 +86,6 @@ list_t *tok_path(list_t *head)
 		tokenbuf = strtok(NULL, ":");
 		if (!tokenbuf)
 			break;
-		printf("tokenbuf is: [%s]\n", tokenbuf);
 		add_node_end(&head, NULL, tokenbuf);
 	}
 
@@ -98,22 +93,26 @@ list_t *tok_path(list_t *head)
 	return (head);
 }
 
+/**
+ * pathval - executes path if it begins with a slash
+ * @head: head of linked list
+ *
+ * Return: 0 if it does not begin with slash, 1 if it does
+ */
+
 int pathval(list_t *head)
 {
-	int val = 0,status;
+	int val = 0, status;
 	char *ptr = head->token;
 	pid_t child;
 	list_t *node = head->next;
 	char *argv[3] = {'\0', '\0', '\0'};
 
-
 	if (ptr[0] == '/')
 	{
 		val = access(head->token, F_OK);
 		if (val != 0)
-		{
 			perror("File does not exist\n");
-		}
 		else
 		{
 			argv[0] = head->token;
@@ -122,9 +121,7 @@ int pathval(list_t *head)
 			child = fork();
 
 			if (child == -1)
-			{
 				perror("Error");
-			}
 
 			else if (child == 0)
 			{
@@ -133,12 +130,7 @@ int pathval(list_t *head)
 				sleep(2);
 			}
 			else
-			{
-/*NOTE TO FUTURE SELVES: REPLACE PRINT statement*/
 				wait(&status);
-				if (WIFEXITED(status))
-					printf("Exit status: %d\n", WEXITSTATUS(status));
-			}
 
 		}
 		return (1);
