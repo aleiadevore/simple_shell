@@ -36,13 +36,16 @@ int envfunction(list_t *head)
 
 int checkfunction(list_t *head)
 {
-	list_t *itr = head;
+	list_t *node = head;
 	char *str;
+	int success;
 
-	while (itr != NULL)
+	while (node != NULL)
 	{
-		str = itr->token;
-		if (_strcmp("PATH", str) == 0 || _strcmp("XDG_SESSION_ID", str) == 0)
+		str = node->token;
+		if (_strcmp("cd", str) == 0)
+			success = cdex(head);
+/*		if (_strcmp("PATH", str) == 0 || _strcmp("XDG_SESSION_ID", str) == 0)
 			getenviron(str, itr);
 		if (_strcmp("TERM", str) == 0 || _strcmp("TERM", str) == 0)
 			getenviron(str, itr);
@@ -64,7 +67,21 @@ int checkfunction(list_t *head)
 			getenviron(str, itr);
 		if (_strcmp("LESSCLOSE", str) == 0)
 			getenviron(str, itr);
-		itr = itr->next;
+*/
+		node = node->next;
 	}
-	return (0);
+	return (success);
+}
+
+int cdex(list_t *head)
+{
+/*	list_t *node;
+ */	int success;
+
+/*	node = head->next;
+ */
+	printf("%s\n", head->token);
+	success = chdir("..");
+
+	return (success);
 }
