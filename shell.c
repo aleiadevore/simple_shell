@@ -13,6 +13,7 @@ int main(void)
 	size_t bufsize;
 	int characters = 0, i = 0, bool = 0, comment = 0;
 
+	signal(SIGINT, ctrl_c);
 	while (1)
 	{
 		head = NULL;

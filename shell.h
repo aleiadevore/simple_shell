@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <dirent.h>
 #include <sys/wait.h>
+#include <signal.h>
 
 /**
  * struct list_t - This stucture holdes the values of the PATH
@@ -48,5 +49,6 @@ int getenviron(char *name, list_t *node);
 int pathval(list_t *head);
 int _putchar(char c);
 int envfunction(list_t *head);
-
+void Exitfunc(list_t *head);
+void ctrl_c(int sig_num);
 #endif
