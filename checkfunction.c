@@ -50,11 +50,6 @@ int checkfunction(list_t *head)
 	}
 	return (success);
 }
-/**
- * cdex - This function allows user to chnage directories
- * @head: this is the linked list being passed in.
- * Return: 0 for success
- */
 
 /**
  * Exitfunc - This function exits the shell when the user types "exit"
