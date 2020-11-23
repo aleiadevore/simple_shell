@@ -8,14 +8,15 @@
  */
 void error_handle(list_t *head, int count, char *av)
 {
-	char *comand = head->token, linecount = count + '0';
+	char *comand = head->token/*, linecount = count + '0'*/;
 	int buff = 0;
+	(void) count;
 
 	buff = _strlen(av) + 1;
 	write(STDERR_FILENO, av, buff);
 	write(STDERR_FILENO, ": ", 3);
-	write(STDERR_FILENO, &linecount, 1);
-	write(STDERR_FILENO, ": ", 3);
+/*	write(STDERR_FILENO, &linecount, 1);
+ */	write(STDERR_FILENO, ": ", 3);
 	buff = _strlen(comand) + 1;
 	write(STDERR_FILENO, comand, buff);
 	write(STDERR_FILENO, ": not found", 12);
