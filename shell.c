@@ -19,14 +19,14 @@ int main(__attribute__((unused))int ac, char **av)
 	signal(SIGINT, ctrl_c);
 	while (1)
 	{
-		++lncount, head = NULL, b = NULL, comment = 0;
+		++lncount;
+		head = NULL, b = NULL, comment = 0;
 		if (isatty(STDIN_FILENO) == 1)
 			write(STDOUT_FILENO, "$ ", 2);
 		characters = getline(&b, &bufsize, stdin);
 		if (characters == EOF)
 		{
 			free(b);
-			_putchar('\n');
 			exit(0);
 		}
 		for (i = 0; b[i] != '\0'; i++)
