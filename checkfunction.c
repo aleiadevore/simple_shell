@@ -6,7 +6,6 @@
  *
  * Return: 1 if env input, 0 if not
  */
-
 int envfunction(list_t *head)
 {
 	int i, j;

@@ -1,4 +1,5 @@
 #include "shell.h"
+
 /**
  * dirsearch - This function looks for a alias match along the PATH
  * @head: this is the linked list reference
@@ -45,8 +46,8 @@ char *dirsearch(list_t *head)
 			}
 		}
 	}
-	_errorputs(head->token);
-	_errorputs(": Command not found\n");
+/*	write(STDOUT_FILENO, head->token, _strlen(head->token));*/
+/*	perror(": Command not found");*/
 	return (NULL);
 }
 /**

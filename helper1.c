@@ -7,7 +7,6 @@
  * Return: negative, zero, or positive value if s1 is greater than, equal to,
  * or less than s2
  */
-
 int _strcmp(char *s1, char *s2)
 {
 	int a = 0, b = 0, c;

@@ -1,4 +1,5 @@
 #include "shell.h"
+
 /**
  * append - This appends the command to the flags
  * @head: this is refernce to linked list
