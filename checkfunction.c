@@ -16,10 +16,10 @@ int envfunction(list_t *head)
 	{
 		if (_strcmp("env", node->token) == 0)
 		{
-			for (i = 0; __environ[i] != NULL; i++)
+			for (i = 0; environ[i] != NULL; i++)
 			{
-				for (j = 0; __environ[i][j] != '\0'; j++)
-					_putchar(__environ[i][j]);
+				for (j = 0; environ[i][j] != '\0'; j++)
+					_putchar(environ[i][j]);
 				_putchar('\n');
 			}
 			return (1);
