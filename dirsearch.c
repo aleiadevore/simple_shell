@@ -3,6 +3,8 @@
 /**
  * dirsearch - This function looks for a alias match along the PATH
  * @head: this is the linked list reference
+ * @lncount: line count
+ * @av: av[0]
  * Return: is a char pointer
  * Description: This looks throught the directories
  */
@@ -47,8 +49,6 @@ char *dirsearch(list_t *head, int lncount, char *av)
 		}
 	}
 	error_handle(head, lncount, av);
-/*	write(STDOUT_FILENO, head->token, _strlen(head->token));*/
-/*	perror(": Command not found");*/
 	return (NULL);
 }
 /**

@@ -3,6 +3,7 @@
  * error_handle - This handles the error when a command is not found
  * @head: this is the linked list being passed in
  * @count: this is the line count.
+ * @av: shell function
  * Return: Nothing since its void
  */
 void error_handle(list_t *head, int count, char *av)

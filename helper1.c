@@ -74,30 +74,3 @@ char *_strdup(const char *str)
 
 	return (ptr);
 }
-
-/**
- * _puts - prints string
- * @str: string to print
- * Return: void
- */
-/*
-void _puts(char *str)
-{
-	while (*str != '\0')
-	{
-		_putchar(*str);
-		str++;
-	}
-	_putchar('\n');
-}
-*/
-/**
-* _puts - prints string
-* @str: string to print
-* Return: void
-*/
-/*
-void _errorputs(char *str)
-{
-	write(STDERR_FILENO, str, _strlen(str));
-}*/

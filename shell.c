@@ -4,6 +4,8 @@
  * main - This Function executes the simple shell
  * Description: This funtion executes the simple shell that
  * returns commands request
+ * @ac: array of commands
+ * @av: command input
  * Return: 0
  */
 
