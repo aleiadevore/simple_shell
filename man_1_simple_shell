@@ -22,7 +22,7 @@ A Unix shell is a command-line interpreter or shell that provides a command line
 
 .B $ ls
 
-01_simple_shell_0.1    05_simple_shell_0.3  check_simple_shell.bash  dirsearch.c  getenviron.c	man_1_simple_shell  simple_shell 02_simple_shell_0.1.1
+01_simple_shell_0.1   05_simple_shell_0.3  check_simple_shell.bash  dirsearch.c  getenviron.c	man_1_simple_shell  simple_shell 02_simple_shell_0.1.1
 README.m  checkfunction.c exe helper1.c	shell.c token.c 03_simple_shell_0.2 addnode.c config execute.c helper2.c shell.h
 .SH RETURN
 

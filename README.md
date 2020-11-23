@@ -8,6 +8,7 @@ That is executed and printed on to the user interface.
 $ [User Input]
 ```
 
+
 ## *Shell.c*
 
 This file calls all the functions in the program that are essential for the
