@@ -17,8 +17,7 @@ char *dirsearch(list_t *head, int lncount, char *av)
 	DIR *dir;
 	(void) lncount,  (void) av;
 
-	tok_path(head);
-	node = head;
+	tok_path(head), node = head;
 	if (pathval(head) == 0)
 	{
 		for (; node != NULL; node = node->next)
@@ -49,7 +48,8 @@ char *dirsearch(list_t *head, int lncount, char *av)
 			}
 		}
 	}
-	helpexit(head);
+	errno = ENOENT;
+	perror(head->token);
 	return (NULL);
 }
 /**
