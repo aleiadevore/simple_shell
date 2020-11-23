@@ -41,7 +41,7 @@ This file contains multiple helper function that account for special uses.
 
     envfunction - This function loops through the environmental variabel and prints every char out.
 
-    Checkfunction - This checks for certian builtin functions by using strcmp to compare user input. 
+    Checkfunction - This checks for certian builtin functions by using strcmp to compare user input.
 
     Cdex - This function allows for the change of directories.
 

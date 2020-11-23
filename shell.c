@@ -6,6 +6,7 @@
  * returns commands request
  * Return: 0
  */
+
 int main(void)
 {
 	list_t *head = NULL;
@@ -16,9 +17,7 @@ int main(void)
 	signal(SIGINT, ctrl_c);
 	while (1)
 	{
-		head = NULL;
-		b = NULL;
-		comment = 0;
+		head = NULL, b = NULL, comment = 0;
 		if (isatty(STDIN_FILENO) == 1)
 			write(STDOUT_FILENO, "$ ", 2);
 		characters = getline(&b, &bufsize, stdin);
@@ -38,6 +37,7 @@ int main(void)
 		{
 			perror("Failed to create head node\n");
 			free(b);
+			exit(30);
 		}
 		if (head->token[0] == '#')
 			comment = 1;

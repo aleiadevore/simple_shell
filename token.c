@@ -13,7 +13,7 @@ list_t *token(char *input, list_t *head)
 	if (!tokenbuf)
 	{
 		free(input);
-		exit(4);
+		exit(40);
 	}
 
 	add_node_end(&head, tokenbuf, NULL);

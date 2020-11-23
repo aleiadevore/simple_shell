@@ -14,7 +14,8 @@ char *append(list_t *head, char *cmd)
 	{
 		perror("Failed to allocate memeory");
 		free(ptr);
-		exit(102);
+		free_list(&head);
+		exit(4);
 	}
 	_strcpy(ptr, cmd);
 	_strcat(ptr, "/");
@@ -49,6 +50,7 @@ int excmd(list_t *head, char *cmd)
 	if (child == -1)
 	{
 		perror("Error");
+		exit(5);
 	}
 
 	else if (child == 0)

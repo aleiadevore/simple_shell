@@ -75,18 +75,16 @@ list_t *tok_path(list_t *head)
 
 	_strcpy(ptrpath, ptr);
 
-	printf("Your path is [%s]\n", ptrpath);
-
 	tokenbuf = strtok(ptrpath, "=");
 	if (!tokenbuf)
 	{
 		perror("tokenbuf failed");
-		exit(5);
+		exit(2);
 	}
 	while (tokenbuf != NULL)
 	{
 		tokenbuf = strtok(NULL, ":");
-		printf("Path token is [%s]\n", tokenbuf);
+
 		if (!tokenbuf)
 			break;
 		add_node_end(&head, NULL, tokenbuf);
@@ -124,7 +122,10 @@ int pathval(list_t *head)
 			child = fork();
 
 			if (child == -1)
+			{
 				perror("Error");
+				exit(3);
+			}
 
 			else if (child == 0)
 			{
