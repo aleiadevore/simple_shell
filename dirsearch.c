@@ -61,12 +61,12 @@ list_t *tok_path(list_t *head)
 	int itr;
 	char *tokenbuf = NULL, *ptrpath = NULL, *ptr;
 
-	for (itr = 0; __environ[itr] != NULL; itr++)
+	for (itr = 0; environ[itr] != NULL; itr++)
 	{
-		if (__environ[itr][0] == 'P')
+		if (environ[itr][0] == 'P')
 		{
 
-			ptr = _strstr(__environ[itr], "PATH=");
+			ptr = _strstr(environ[itr], "PATH=");
 			if (ptr != 0)
 				break;
 		}

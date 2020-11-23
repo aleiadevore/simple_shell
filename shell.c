@@ -8,7 +8,7 @@
  */
 
 
-int main(void)
+int main(int ac, char **av)
 {
 	list_t *head = NULL;
 	char *b = NULL, n = '\0';
@@ -24,7 +24,6 @@ int main(void)
 		characters = getline(&b, &bufsize, stdin);
 		if (characters == EOF)
 		{
-			write(STDOUT_FILENO, "EOF\n", 4);
 			free(b);
 			exit(0);
 		}

@@ -72,6 +72,5 @@ void Exitfunc(list_t *head)
 void ctrl_c(int sig_num)
 {
 	signal(sig_num, SIG_IGN);
-	write(STDOUT_FILENO, "\n Cannot be terminated using Ctrl+C \n", 39);
 	fflush(stdout);
 }
