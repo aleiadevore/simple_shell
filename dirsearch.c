@@ -15,7 +15,6 @@ char *dirsearch(list_t *head, int lncount, char *av)
 	char *file = NULL;
 	struct dirent *nav;
 	DIR *dir;
-	(void) lncount,  (void) av;
 
 	tok_path(head), node = head;
 	if (pathval(head) == 0)
@@ -47,8 +46,7 @@ char *dirsearch(list_t *head, int lncount, char *av)
 				closedir(dir);
 			}
 		}
-		errno = ENOENT;
-		perror(head->token);
+		error_handle(head, lncount, av);
 	}
 	return (NULL);
 }
@@ -145,15 +143,21 @@ int pathval(list_t *head)
 }
 
 /**
- * helpexit - This function helps the dirsearch function exit and free memory
+ * error_handle - This function helps print the error handling
  * @head: this is a refernce to the linke list.
+ * @count: This is a count of the number of lines that are recived
+ * @av: This hold the first argument from the command line av[0]
  * Return: void
  */
-void helpexit(list_t *head)
+void error_handle(list_t *head, int count, char *av)
 {
-/*	errno = ENOENT;*/
+	char *input = av, *command = head->token, lncount = count + '0';
 
-	perror("head->token");
-	free_list(&head);
-	exit(127);
+	errno = ENOENT;
+
+	write(STDOUT_FILENO, input, _strlen(input));
+	write(STDOUT_FILENO, ": ", 3);
+	write(STDERR_FILENO, &lncount, 1);
+	write(STDERR_FILENO, ": ", 3);
+	perror(command);
 }

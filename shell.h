@@ -53,4 +53,5 @@ void Exitfunc(list_t *head);
 void ctrl_c(int sig_num);
 char *dirsearch(list_t *head, int lncount, char *av);
 void helpexit(list_t *head);
+void error_handle(list_t *head, int count, char *av);
 #endif

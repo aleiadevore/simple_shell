@@ -54,6 +54,7 @@ This file contains multiple helper function that account for special uses.
 ## *helper1.c*
 
 This function contains helper functions that allow for simple tasks to be executed.
+
      _strcmp - This compares two strings and returns 0 if match is found.
 
      _strcpy - This copies a string into another place in memory.
@@ -63,6 +64,7 @@ This function contains helper functions that allow for simple tasks to be execut
 ## *helper2.c*
 
 This function contains helper functions that allow for simple tasks to be executed.
+
      _strlen - This functions loops through a string and gets a string length.
 
      _strcat - This concatenated a string to the end of another.
@@ -80,6 +82,7 @@ This file contins two functions that help execute the users input and get the co
      execmd - This function takes in the linked list and extracts the the users input and tokenized path and executes it.
 
      append - This function appends the users input to one string for easier use in execmd.
+
 ## *dirsearch.c*
 
 This file contians the files to check along the environmental variabel and path.
@@ -89,6 +92,8 @@ This file contians the files to check along the environmental variabel and path.
      tok_path - This function is passed the PATH and parses so that only the PATH remains.
 
      pathval - This function validates that a file exists and then finaly executes.
+
+     error_handle - This function handles the error output when a command is not found.
 ## *Exit Status*
 
 The exits statsus tells where the program exited and by what depending on the number.
