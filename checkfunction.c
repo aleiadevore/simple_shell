@@ -7,7 +7,6 @@
  * Return: 1 if env input, 0 if not
  */
 
-
 int envfunction(list_t *head)
 {
 	int i, j;
@@ -57,16 +56,19 @@ int checkfunction(list_t *head)
  * Return: void
  * Descritption: This function is a replacement for the Exit builtin
  */
+
 void Exitfunc(list_t *head)
 {
 	free_list(&head);
 	exit(0);
 }
+
 /**
  * ctrl_c - this handles the ctrl c when wntered by user
  * @sig_num: This is the integer that is passed in.
  * Return: void
  */
+
 void ctrl_c(int sig_num)
 {
 	signal(sig_num, SIG_IGN);
