@@ -7,16 +7,17 @@
  * Return: 0
  */
 
-int main(void)
+int main(__attribute__((unused))int ac, char **av)
 {
 	list_t *head = NULL;
 	char *b = NULL, n = '\0';
 	size_t bufsize;
-	int characters = 0, i = 0, check = 0, comment = 0;
+	int characters = 0, i = 0, check = 0, comment = 0, lncount = 0;
 
 	signal(SIGINT, ctrl_c);
 	while (1)
 	{
+		++lncount;
 		head = NULL, b = NULL, comment = 0;
 		if (isatty(STDIN_FILENO) == 1)
 			write(STDOUT_FILENO, "$ ", 2);
@@ -43,7 +44,7 @@ int main(void)
 		check = envfunction(head);
 		checkfunction(head);
 		if (check != 1 && comment != 1)
-			dirsearch(head);
+			dirsearch(head, lncount, av[0]);
 		free_list(&head);
 	}
 	return (0);

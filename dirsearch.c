@@ -7,7 +7,7 @@
  * Description: This looks throught the directories
  */
 
-char *dirsearch(list_t *head)
+char *dirsearch(list_t *head, int lncount, char *av)
 {
 	list_t *node = NULL;
 	char *file = NULL;
@@ -46,6 +46,7 @@ char *dirsearch(list_t *head)
 			}
 		}
 	}
+	error_handle(head, lncount, av);
 /*	write(STDOUT_FILENO, head->token, _strlen(head->token));*/
 /*	perror(": Command not found");*/
 	return (NULL);

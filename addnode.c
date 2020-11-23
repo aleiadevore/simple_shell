@@ -73,7 +73,8 @@ void free_list(list_t **head)
 		{
 			tmp = *head;
 			*head = (*head)->next;
-			free(tmp->token);
+			if (tmp->token != NULL)
+				free(tmp->token);
 			if (tmp->cmdtok != NULL)
 				free(tmp->cmdtok);
 			free(tmp);

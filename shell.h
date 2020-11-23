@@ -41,7 +41,6 @@ void free_list(list_t **head);
 char *_strncpy(char *dest, char *src, int n);
 size_t print_list(const list_t *h);
 int checkfunction(list_t *head);
-char *dirsearch(list_t *head);
 list_t *tok_path(list_t *head);
 int excmd(list_t *head, char *cmd);
 char *append(list_t *head, char *cmd);
@@ -52,5 +51,7 @@ int _putchar(char c);
 int envfunction(list_t *head);
 void Exitfunc(list_t *head);
 void ctrl_c(int sig_num);
-
+char *dirsearch(list_t *head, int lncount, char *av);
+void error_handle(list_t *head, int count, char *av);
+char *_itoa(int count);
 #endif
