@@ -15,6 +15,7 @@ char *dirsearch(list_t *head, int lncount, char *av)
 	char *file = NULL;
 	struct dirent *nav;
 	DIR *dir;
+	(void) lncount,  (void) av;
 
 	tok_path(head);
 	node = head;
