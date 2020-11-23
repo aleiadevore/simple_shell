@@ -14,7 +14,7 @@ char *append(list_t *head, char *cmd)
 	ptr = malloc(sizeof(char) * (_strlen(head->token) + _strlen(cmd) + 2));
 	if (!ptr)
 	{
-		_errorputs("Failed to allocate memeory");
+		perror("Failed to allocate memeory");
 		free(ptr);
 		free_list(&head);
 		exit(4);

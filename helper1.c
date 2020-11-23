@@ -64,7 +64,7 @@ char *_strdup(const char *str)
 	ptr = malloc((length + 1) * sizeof(char));
 	if (ptr == NULL)
 	{
-		_errorputs("Failed to allocate memory\n");
+		perror("Failed to allocate memory\n");
 		exit(11);
 	}
 	for (x = 0; x <= length; x++)
@@ -80,7 +80,7 @@ char *_strdup(const char *str)
  * @str: string to print
  * Return: void
  */
-
+/*
 void _puts(char *str)
 {
 	while (*str != '\0')
@@ -90,14 +90,14 @@ void _puts(char *str)
 	}
 	_putchar('\n');
 }
-
+*/
 /**
 * _puts - prints string
 * @str: string to print
 * Return: void
 */
-
+/*
 void _errorputs(char *str)
 {
 	write(STDERR_FILENO, str, _strlen(str));
-}
+}*/

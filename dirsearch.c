@@ -25,7 +25,7 @@ char *dirsearch(list_t *head)
 				dir = opendir(node->cmdtok);
 				if (dir == NULL)
 				{
-					_errorputs("directory not found\n");
+					perror("directory not found\n");
 					return (NULL);
 				}
 				while ((nav = readdir(dir)) != NULL)
@@ -80,7 +80,7 @@ list_t *tok_path(list_t *head)
 	tokenbuf = strtok(ptrpath, "=");
 	if (!tokenbuf)
 	{
-		_errorputs("tokenbuf failed");
+		perror("tokenbuf failed");
 		exit(2);
 	}
 	while (tokenbuf != NULL)
@@ -115,7 +115,7 @@ int pathval(list_t *head)
 	{
 		val = access(head->token, F_OK);
 		if (val != 0)
-			_errorputs("File does not exist\n");
+			perror("File does not exist\n");
 		else
 		{
 			argv[0] = head->token;

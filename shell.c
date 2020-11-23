@@ -34,7 +34,7 @@ int main(void)
 		head = token(b, head);
 		if (!head)
 		{
-			_errorputs("Failed to create head node\n");
+			perror("Failed to create head node\n");
 			free(b);
 			exit(30);
 		}
