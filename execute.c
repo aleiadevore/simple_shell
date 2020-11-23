@@ -35,7 +35,7 @@ int excmd(list_t *head, char *cmd)
 	pid_t child;
 	list_t *node = NULL;
 	char *argv[4] = {'\0', '\0', '\0', '\0'}, *flag = NULL, *ptr = NULL;
-	int bool = 0, status;
+	int check = 0, status;
 
 	node = head->next;
 	flag = node->token;
@@ -64,5 +64,5 @@ int excmd(list_t *head, char *cmd)
 		wait(&status);
 	free(ptr);
 
-	return (bool);
+	return (check);
 }

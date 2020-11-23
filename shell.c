@@ -13,9 +13,9 @@ int main(void)
 	list_t *head = NULL;
 	char *b = NULL, n = '\0';
 	size_t bufsize;
-	int characters = 0, i = 0, bool = 0, comment = 0;
+	int characters = 0, i = 0, check = 0, comment = 0;
 
-	/*signal(SIGINT, ctrl_c);*/
+	signal(SIGINT, ctrl_c);
 	while (1)
 	{
 		head = NULL, b = NULL, comment = 0;
@@ -41,9 +41,9 @@ int main(void)
 		}
 		if (head->token[0] == '#')
 			comment = 1;
-		bool = envfunction(head);
+		check = envfunction(head);
 		checkfunction(head);
-		if (bool != 1 && comment != 1)
+		if (check != 1 && comment != 1)
 			dirsearch(head);
 		free_list(&head);
 	}

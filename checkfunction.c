@@ -69,8 +69,8 @@ void Exitfunc(list_t *head)
  * Return: void
  */
 
-/*void ctrl_c(int sig_num)
+void ctrl_c(int sig_num)
 {
 	signal(sig_num, SIG_IGN);
 	fflush(stdout);
-	}*/
+}
