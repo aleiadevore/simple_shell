@@ -150,7 +150,7 @@ int pathval(list_t *head)
  */
 void helpexit(list_t *head)
 {
-	errno = ENOENT;
+/*	errno = ENOENT;*/
 
 	perror("head->token");
 	free_list(&head);
