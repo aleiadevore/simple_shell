@@ -45,8 +45,8 @@ char *dirsearch(list_t *head)
 			}
 		}
 	}
-	write(STDOUT_FILENO, head->token, _strlen(head->token));
-	perror(": Command not found");
+/*	write(STDOUT_FILENO, head->token, _strlen(head->token));
+	perror(": Command not found");*/
 	return (NULL);
 }
 /**
@@ -132,8 +132,8 @@ int pathval(list_t *head)
 			{
 				if (execve(argv[0], argv, NULL) != -1)
 					perror("Error");
-				sleep(2);
-			}
+/*				sleep(2);
+ */			}
 			else
 				wait(&status);
 

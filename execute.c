@@ -58,8 +58,8 @@ int excmd(list_t *head, char *cmd)
 	{
 		if (execve(argv[0], argv, NULL) != -1)
 			perror("Error");
-		sleep(2);
-	}
+/*		sleep(2);
+ */	}
 	else
 		wait(&status);
 	free(ptr);
