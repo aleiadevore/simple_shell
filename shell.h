@@ -1,6 +1,6 @@
 #ifndef _SHELL_H_
 #define _SHELL_H_
-
+#include <errno.h>
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -52,4 +52,5 @@ int envfunction(list_t *head);
 void Exitfunc(list_t *head);
 void ctrl_c(int sig_num);
 char *dirsearch(list_t *head, int lncount, char *av);
+void helpexit(list_t *head);
 #endif
