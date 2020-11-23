@@ -37,7 +37,8 @@ int main(__attribute__((unused))int ac, char **av)
 		head = token(b, head);
 		if (!head)
 		{
-			perror("Failed to create head node\n");
+			errno = ENOMEM;
+			perror("head");
 			free(b);
 			exit(30);
 		}

@@ -64,13 +64,12 @@ char *_strdup(const char *str)
 	ptr = malloc((length + 1) * sizeof(char));
 	if (ptr == NULL)
 	{
-		perror("Failed to allocate memory\n");
+		errno = ENOMEM;
+		perror("ptr");
 		exit(11);
 	}
 	for (x = 0; x <= length; x++)
-	{
 		ptr[x] = str[x];
-	}
 
 	return (ptr);
 }

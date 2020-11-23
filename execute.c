@@ -14,7 +14,8 @@ char *append(list_t *head, char *cmd)
 	ptr = malloc(sizeof(char) * (_strlen(head->token) + _strlen(cmd) + 2));
 	if (!ptr)
 	{
-		perror("Failed to allocate memeory");
+		errno = ENOMEM;
+		perror("ptr");
 		free(ptr);
 		free_list(&head);
 		exit(4);
@@ -51,7 +52,8 @@ int excmd(list_t *head, char *cmd)
 
 	if (child == -1)
 	{
-		perror("Error");
+		errno = ECHILD;
+		perror("Error:");
 		exit(5);
 	}
 

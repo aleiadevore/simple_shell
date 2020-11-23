@@ -81,7 +81,7 @@ list_t *tok_path(list_t *head)
 	if (!tokenbuf)
 	{
 		errno = ENOMEM;
-		perror("tokenbuf failed");
+		perror("tokenbuf");
 		exit(2);
 	}
 	while (tokenbuf != NULL)

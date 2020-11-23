@@ -14,7 +14,9 @@ list_t *add_node(list_t **head, const char *str)
 	newnode = malloc(sizeof(list_t));
 	if (newnode == NULL)
 	{
+		errno = ENOMEM;
 		free_list(head);
+		perror("newnode");
 		return (NULL);
 	}
 	newnode->token = _strdup(str);
@@ -39,7 +41,9 @@ list_t *add_node_end(list_t **head, const char *str, const char *cmd)
 	lastnode = malloc(sizeof(list_t));
 	if (!lastnode)
 	{
+		errno = ENOMEM;
 		free(lastnode);
+		perror("lastnode");
 		return (NULL);
 	}
 	lastnode->token = _strdup(str);
