@@ -49,6 +49,7 @@ char *dirsearch(list_t *head, int lncount, char *av)
 			}
 		}
 	}
+	helpexit(head);
 	return (NULL);
 }
 /**
@@ -129,7 +130,6 @@ int pathval(list_t *head)
 				perror("Error");
 				exit(3);
 			}
-
 			else if (child == 0)
 			{
 				if (execve(argv[0], argv, NULL) != -1)
@@ -141,4 +141,18 @@ int pathval(list_t *head)
 		return (1);
 	}
 	return (0);
+}
+
+/**
+ * helpexit - This function helps the dirsearch function exit and free memory
+ * @head: this is a refernce to the linke list.
+ * Return: void
+ */
+void helpexit(list_t *head)
+{
+	errno = ENOENT;
+
+	perror("head->token");
+	free_list(&head);
+	exit(127);
 }
