@@ -1,4 +1,5 @@
 #include "shell.h"
+
 /**
  * append - This appends the command to the flags
  * @head: this is refernce to linked list
@@ -58,8 +59,7 @@ int excmd(list_t *head, char *cmd)
 	{
 		if (execve(argv[0], argv, NULL) != -1)
 			perror("Error");
-/*		sleep(2);
- */	}
+	}
 	else
 		wait(&status);
 	free(ptr);

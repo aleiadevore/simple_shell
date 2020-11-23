@@ -52,5 +52,4 @@ int _putchar(char c);
 int envfunction(list_t *head);
 void Exitfunc(list_t *head);
 void ctrl_c(int sig_num);
-
 #endif

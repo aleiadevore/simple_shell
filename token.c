@@ -1,4 +1,5 @@
 #include "shell.h"
+
 /**
  * token - tokenizes user input
  * @input: input from terminal
