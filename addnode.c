@@ -1,5 +1,4 @@
 #include "shell.h"
-
 /**
  * add_node - adds node at beginning of linked list
  * @head: head node
@@ -28,6 +27,7 @@ list_t *add_node(list_t **head, const char *str)
  * add_node_end - adds node to end of list
  * @head: start of list
  * @str: string
+ * @cmd: command to duplicate
  * Return: pointer to node or NULL
  */
 
@@ -79,25 +79,4 @@ void free_list(list_t **head)
 		}
 		*head = NULL;
 	}
-}
-
-/**
- * print_list - prints all elements of list
- * @h: list to print
- * Return: number of nodes
- */
-size_t print_list(const list_t *h)
-{
-	int count = 0;
-
-	while (h != NULL)
-	{
-		if (h->token == NULL)
-			printf("[0] (nil)\n");
-		else
-			printf("node: [%s]\n", h->token);
-		count++;
-		h = h->next;
-	}
-	return (count);
 }

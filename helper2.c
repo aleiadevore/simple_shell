@@ -1,5 +1,6 @@
 #include "shell.h"
 
+
 /**
  * _strlen - returns length of string
  * @s: string
@@ -8,15 +9,12 @@
 
 int _strlen(char *s)
 {
-	int length = 0;
+	int len = 0;
 
-	while (*s != '\0')
-	{
-		s++;
-		length++;
-	}
+	while (s[len] != '\0')
+		len++;
 
-	return (length);
+	return (len);
 }
 
 /**
@@ -35,10 +33,10 @@ char *_strcat(char *dest, char *src)
 
 	while (dest[destlength] != '\0')
 		destlength++;
-
 	for (i = 0 ; i <= srclength && src[i] != '\0' ; i++)
+	{
 		dest[destlength + i] = src[i];
-
+	}
 	dest[destlength + i] = '\0';
 
 	return (dest);
@@ -61,4 +59,42 @@ char *_strncpy(char *dest, char *src, int n)
 		dest[i] = '\0';
 
 	return (dest);
+}
+
+/**
+ * _strstr - locates a substring
+ * @haystack: string
+ * @needle: substring
+ * Return: pointer to beginning of substring
+ */
+
+char *_strstr(char *haystack, char *needle)
+{
+	int x = 0, y = 0;
+
+	while (haystack[x] != 0)
+	{
+		while (needle[y] != 0)
+		{
+			if (haystack[x + y] != needle[y])
+				break;
+			y++;
+		}
+		if (needle[y] == 0)
+			return (haystack + x);
+		x++;
+	}
+	return (0);
+}
+
+/**
+ * _putchar - prints one character
+ * @c: character to print
+ *
+ * Return: 0 on success of -1 on fail
+ */
+
+int _putchar(char c)
+{
+	return (write(1, &c, 1));
 }

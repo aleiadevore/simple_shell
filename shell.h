@@ -8,18 +8,22 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <dirent.h>
+#include <sys/wait.h>
+#include <signal.h>
 
-extern char **environ;
 /**
  * struct list_t - This stucture holdes the values of the PATH
  * @token: The tokenized Path
- * @next: this is a pointer to the next node in the list
+ * @next: This is a pointer to the next node in the list
+ * @cmdtok: This is a pointer that points to tokenized PATH
+ * @envpth: This holds the Environmental PATH
  * Description: This is a singly linked list for the tokenized PATH
  */
 typedef struct list_t
 {
 	char *token;
 	char *cmdtok;
+	char *envpth;
 	struct list_t *next;
 
 } list_t;
@@ -34,10 +38,17 @@ list_t *add_node(list_t **head, const char *str);
 list_t *add_node_end(list_t **head, const char *str, const char *cmd);
 void free_list(list_t **head);
 char *_strncpy(char *dest, char *src, int n);
-int getenviron(char *name, list_t *node);
 size_t print_list(const list_t *h);
 int checkfunction(list_t *head);
 char *dirsearch(list_t *head);
 list_t *tok_path(list_t *head);
-char *parsedenv(void);
+int excmd(list_t *head, char *cmd);
+char *append(list_t *head, char *cmd);
+char *_strstr(char *haystack, char *needle);
+int getenviron(char *name, list_t *node);
+int pathval(list_t *head);
+int _putchar(char c);
+int envfunction(list_t *head);
+void Exitfunc(list_t *head);
+void ctrl_c(int sig_num);
 #endif

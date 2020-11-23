@@ -1,0 +1,48 @@
+.TH SIMPLE_SHELL 1 "Nov 21, 2020" "1.0" "Simple shell man page"
+
+.SH NAME
+
+ simple_shell \- The simple_shell take input from user and executes said command if found.
+
+.SH SYNOPSIS
+
+.B $ [args][flag]
+
+.SH DESCRIPTION
+
+A Unix shell is a command-line interpreter or shell that provides a command line user interface for Unix-like operating systems. The shell is both an interactive command language and a scripting language, and is used by the operating system to control the execution of the system using shell scripts.
+
+.SH EXAMPLES
+
+.B $ pwd
+
+     /home/vagrant/simple_shell
+
+----------------------------------------------------------------------
+
+.B $ ls
+
+01_simple_shell_0.1    05_simple_shell_0.3  check_simple_shell.bash  dirsearch.c  getenviron.c	man_1_simple_shell  simple_shell 02_simple_shell_0.1.1
+README.m  checkfunction.c exe helper1.c	shell.c token.c 03_simple_shell_0.2 addnode.c config execute.c helper2.c shell.h
+.SH RETURN
+
+    The shell returns a number from an exit statment that tells where the code failed. It also returns boolean values depending on the function.
+
+.SH OPTIONS
+
+.B env
+ - This displays the current environment on your terminal when prompted with env command.
+
+.B pwd
+ - This displays the current working on your teminal when prompted with pwd command.
+
+.B PATH
+ - This displays the current PATH variable on your terminal when prompted with the PATH command.
+
+.B ls
+ - This displys the current files in your working directory.
+
+.SH AUTHOR
+
+.B    Aleia Devore
+.B    Carlos Esquivel

@@ -10,41 +10,42 @@ char *dirsearch(list_t *head)
 	list_t *node = NULL;
 	char *file = NULL;
 	struct dirent *nav;
-        DIR *dir;
+	DIR *dir;
 
-
-	node = tok_path(head);
-	while (node != NULL)
+	tok_path(head);
+	node = head;
+	if (pathval(head) == 0)
 	{
-		if (node->cmdtok != NULL)
+		for (; node != NULL; node = node->next)
 		{
-/*			printf("node->cmdtok = [%s]\n", node->cmdtok);
- */			dir = opendir(node->cmdtok);
-			if (dir == NULL)
+			if (node->cmdtok != NULL)
 			{
-				printf("directory not found\n");
-				return (NULL);
-			}
-			/*	printf("directory not null");*/
-			while ((nav = readdir(dir)) != NULL)
-			{
-/*				printf("nav->d_name = [%s]", nav->d_name);*/
-				if ((_strcmp(nav->d_name, ".")) == 0 ||
-				    (_strcmp(nav->d_name, "..")) == 0)
-					continue;
-				printf("_____nav->d_name = [%s], head->token = [%s]____\n", nav->d_name, head->token);
-				if (_strcmp(head->token, nav->d_name) == 0)
+				dir = opendir(node->cmdtok);
+				if (dir == NULL)
 				{
-					printf("Found a match node->token = [%s] nav->d_name [%s]", node->token, nav->d_name);
-					file = node->cmdtok;
-					closedir(dir);
-					return (file);
+					perror("directory not found\n");
+					return (NULL);
 				}
+				while ((nav = readdir(dir)) != NULL)
+				{
+					if (_strcmp(nav->d_name, ".") == 0)
+						continue;
+					else if (_strcmp(nav->d_name, "..") == 0)
+						continue;
+					if (_strcmp(head->token, nav->d_name) == 0)
+					{
+						file = node->cmdtok;
+						closedir(dir);
+						excmd(head, file);
+						return (file);
+					}
+				}
+				closedir(dir);
 			}
-			closedir(dir);
 		}
-		node = node->next;
 	}
+	write(STDOUT_FILENO, head->token, _strlen(head->token));
+	perror(": Command not found");
 	return (NULL);
 }
 /**
@@ -52,63 +53,90 @@ char *dirsearch(list_t *head)
  * @head: a refernce to he linked list which contians path and input
  *
  * Return: head
-nav->d_name, ".")) == 0 ||
-                                    (_strcmp(nav->d_name, "..") */
+ */
+
 list_t *tok_path(list_t *head)
 {
-	list_t *node = head;
-	char *tokenbuf = NULL, *ptrpath = NULL;
-	printf("made it into tokpath\n");
-	for (;node != NULL; node = node->next)
-		;
-	ptrpath = parsedenv();
-	tokenbuf = strtok(ptrpath, ":");
-	if(!tokenbuf)
+	int itr;
+	char *tokenbuf = NULL, *ptrpath = NULL, *ptr;
+
+	for (itr = 0; __environ[itr] != NULL; itr++)
 	{
-		printf("tokenbuf failed, [%s]\n", tokenbuf);
+		if (__environ[itr][0] == 'P')
+		{
+
+			ptr = _strstr(__environ[itr], "PATH=");
+			if (ptr != 0)
+				break;
+		}
+	}
+
+	ptrpath = malloc(sizeof(char) * (_strlen(ptr) + 1));
+
+	_strcpy(ptrpath, ptr);
+
+	printf("Your path is [%s]\n", ptrpath);
+
+	tokenbuf = strtok(ptrpath, "=");
+	if (!tokenbuf)
+	{
+		perror("tokenbuf failed");
 		exit(5);
 	}
-	add_node_end(&head, NULL, tokenbuf);
-	printf("before whileloop\n");
 	while (tokenbuf != NULL)
 	{
 		tokenbuf = strtok(NULL, ":");
-		printf("Parsed PATH by [:] [%s]\n", tokenbuf);
+		printf("Path token is [%s]\n", tokenbuf);
 		if (!tokenbuf)
 			break;
 		add_node_end(&head, NULL, tokenbuf);
 	}
+
+	free(ptrpath);
 	return (head);
 }
-/**
- * getenviron - This gets the environment variable from envrion
- * @name: this is the tokenized path
- * @head: head of linked list
- * Return: is
- */
-char *parsedenv(void)
-{
-	int itr = 0, j = 0;
-	char *name = "PATH", *ptrpath = NULL;
-/*      char *envptr = NULL;*/
 
-	printf("name is %s\n", name);
-	while (__environ[itr] != NULL)
+/**
+ * pathval - executes path if it begins with a slash
+ * @head: head of linked list
+ *
+ * Return: 0 if it does not begin with slash, 1 if it does
+ */
+
+int pathval(list_t *head)
+{
+	int val = 0, status;
+	char *ptr = head->token;
+	pid_t child;
+	list_t *node = head->next;
+	char *argv[3] = {'\0', '\0', '\0'};
+
+	if (ptr[0] == '/')
 	{
-		while (1)
+		val = access(head->token, F_OK);
+		if (val != 0)
+			perror("File does not exist\n");
+		else
 		{
-			if (name[j] == '\0' && __environ[itr][j] == '=')
+			argv[0] = head->token;
+			argv[1] = node->token;
+
+			child = fork();
+
+			if (child == -1)
+				perror("Error");
+
+			else if (child == 0)
 			{
-/*                              envptr = &(__environ[itr][j + 1]);*/
-				ptrpath = &(__environ[itr][j + 1]);
-				printf("This is ptrpath in the parsed env [%s]\n", ptrpath);
-				return (ptrpath);
+				if (execve(argv[0], argv, NULL) != -1)
+					perror("Error");
+				sleep(2);
 			}
-                        if (name[j] != __environ[itr][j])
-				break;
-			j++;
+			else
+				wait(&status);
+
 		}
-                itr++;
+		return (1);
 	}
-        return (NULL);
+	return (0);
 }
