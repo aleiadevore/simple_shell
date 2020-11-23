@@ -47,6 +47,8 @@ char *dirsearch(list_t *head, int lncount, char *av)
 				closedir(dir);
 			}
 		}
+		errno = ENOENT;
+		perror(head->token);
 	}
 	return (NULL);
 }
