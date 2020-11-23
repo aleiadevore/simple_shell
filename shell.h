@@ -11,6 +11,7 @@
 #include <sys/wait.h>
 #include <signal.h>
 
+extern char **environ;
 /**
  * struct list_t - This stucture holdes the values of the PATH
  * @token: The tokenized Path
