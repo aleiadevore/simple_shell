@@ -13,7 +13,7 @@ char *append(list_t *head, char *cmd)
 	ptr = malloc(sizeof(char) * (_strlen(head->token) + _strlen(cmd) + 2));
 	if (!ptr)
 	{
-		perror("Failed to allocate memeory");
+		_errorputs("Failed to allocate memeory");
 		free(ptr);
 		free_list(&head);
 		exit(4);
@@ -58,8 +58,7 @@ int excmd(list_t *head, char *cmd)
 	{
 		if (execve(argv[0], argv, NULL) != -1)
 			perror("Error");
-/*		sleep(2);
- */	}
+	}
 	else
 		wait(&status);
 	free(ptr);
