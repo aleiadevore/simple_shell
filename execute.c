@@ -5,6 +5,7 @@
  * @cmd: This is the command passed
  * Return: pointer to concatenated string
  */
+
 char *append(list_t *head, char *cmd)
 {
 	char *ptr = NULL;

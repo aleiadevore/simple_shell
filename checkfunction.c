@@ -7,6 +7,7 @@
  * Return: 1 if env input, 0 if not
  */
 
+
 int envfunction(list_t *head)
 {
 	int i, j;
@@ -54,17 +55,6 @@ int checkfunction(list_t *head)
  * @head: this is the linked list being passed in.
  * Return: 0 for success
  */
-
-int cdex(list_t *head)
-{
-	list_t *node;
-	int success = 0;
-
-	node = head->next;
-	success = chdir("..");
-
-	return (success);
-}
 
 /**
  * Exitfunc - This function exits the shell when the user types "exit"

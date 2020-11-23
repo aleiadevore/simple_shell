@@ -16,6 +16,7 @@ int _strlen(char *s)
 	return (len);
 }
 
+
 /**
  * _strcat - concatenates two strings
  * @dest: destination string

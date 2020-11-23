@@ -5,6 +5,7 @@
  * Return: is a char pointer
  * Description: This looks throught the directories
  */
+
 char *dirsearch(list_t *head)
 {
 	list_t *node = NULL;
