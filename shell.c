@@ -8,7 +8,7 @@
  */
 
 
-int main(int ac, char **av)
+int main(void)
 {
 	list_t *head = NULL;
 	char *b = NULL, n = '\0';
