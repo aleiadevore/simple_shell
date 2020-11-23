@@ -75,6 +75,8 @@ list_t *tok_path(list_t *head)
 
 	_strcpy(ptrpath, ptr);
 
+	printf("Your path is [%s]\n", ptrpath);
+
 	tokenbuf = strtok(ptrpath, "=");
 	if (!tokenbuf)
 	{
@@ -84,6 +86,7 @@ list_t *tok_path(list_t *head)
 	while (tokenbuf != NULL)
 	{
 		tokenbuf = strtok(NULL, ":");
+		printf("Path token is [%s]\n", tokenbuf);
 		if (!tokenbuf)
 			break;
 		add_node_end(&head, NULL, tokenbuf);
