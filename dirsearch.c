@@ -49,7 +49,6 @@ char *dirsearch(list_t *head, int lncount, char *av)
 			}
 		}
 	}
-	error_handle(head, lncount, av);
 	return (NULL);
 }
 /**

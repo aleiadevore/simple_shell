@@ -52,6 +52,4 @@ int envfunction(list_t *head);
 void Exitfunc(list_t *head);
 void ctrl_c(int sig_num);
 char *dirsearch(list_t *head, int lncount, char *av);
-void error_handle(list_t *head, int count, char *av);
-char *_itoa(int count);
 #endif
