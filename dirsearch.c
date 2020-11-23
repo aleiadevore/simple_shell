@@ -48,8 +48,6 @@ char *dirsearch(list_t *head, int lncount, char *av)
 			}
 		}
 	}
-	errno = ENOENT;
-	perror(head->token);
 	return (NULL);
 }
 /**
@@ -82,6 +80,7 @@ list_t *tok_path(list_t *head)
 	tokenbuf = strtok(ptrpath, "=");
 	if (!tokenbuf)
 	{
+		errno = ENOMEM;
 		perror("tokenbuf failed");
 		exit(2);
 	}
