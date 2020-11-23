@@ -11,11 +11,11 @@ void error_handle(list_t *head, int count, char *av)
 	char *comand = head->token, linecount = count + '0';
 
 
-	write(STDERR_FILENO, av, _strlen(av));
-	write(STDERR_FILENO, ": ", 3);
-	write(STDERR_FILENO, &linecount, 1);
-	write(STDERR_FILENO, ": ", 3);
-	write(STDERR_FILENO, comand, _strlen(comand));
-	write(STDERR_FILENO, ": not found", 12);
-	write(STDERR_FILENO, "\n", 1);
+	write(1, av, _strlen(av));
+	write(1, ": ", 3);
+	write(1, &linecount, 1);
+	write(1, ": ", 3);
+	write(1, comand, _strlen(comand));
+	write(1, ": not found", 12);
+	write(1, "\n", 1);
 }
