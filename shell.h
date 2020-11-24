@@ -55,4 +55,6 @@ char *dirsearch(list_t *head, int lncount, char *av);
 void helpexit(list_t *head);
 void error_handle(list_t *head, int count, char *av);
 void helpererror(char *errorstat, int errornum);
+int _itoa(int n);
+void rev_string(char *s);
 #endif

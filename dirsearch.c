@@ -162,13 +162,14 @@ int pathval(list_t *head)
  */
 void error_handle(list_t *head, int count, char *av)
 {
-	char *input = av, *command = head->token, lncount = count + '0';
+	char *input = av, *command = head->token;
 
 	errno = ENOENT;
 
 	write(STDOUT_FILENO, input, _strlen(input));
 	write(STDOUT_FILENO, ": ", 3);
-	write(STDERR_FILENO, &lncount, 1);
+	_itoa(count);
+/*	write(STDERR_FILENO, lncount, _strlen(lncount));*/
 	write(STDERR_FILENO, ": ", 3);
 	perror(command);
 }
