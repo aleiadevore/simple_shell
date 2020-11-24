@@ -66,35 +66,46 @@ list_t *tok_path(list_t *head)
 	{
 		if (environ[itr][0] == 'P')
 		{
-
 			ptr = _strstr(environ[itr], "PATH=");
 			if (ptr != 0)
 				break;
 		}
 	}
+	if (!ptr)
+		helpererror("ptr", ENOMEM);
 
 	ptrpath = malloc(sizeof(char) * (_strlen(ptr) + 1));
+
+	if (!ptrpath)
+		helpererror("tokenbuf", ENOMEM);
 
 	_strcpy(ptrpath, ptr);
 
 	tokenbuf = strtok(ptrpath, "=");
+
 	if (!tokenbuf)
-	{
-		errno = ENOMEM;
-		perror("tokenbuf");
-		exit(2);
-	}
+		helpererror("tokenbuf", ENOENT);
 	while (tokenbuf != NULL)
 	{
 		tokenbuf = strtok(NULL, ":");
-
 		if (!tokenbuf)
 			break;
 		add_node_end(&head, NULL, tokenbuf);
 	}
-
 	free(ptrpath);
 	return (head);
+}
+
+/**
+ * helpererror - This function handles the error cases for functions
+ * @errorstat: this is the name of the variable we are checking
+ * @errornum: this is the macro that checks for the appropriate error message
+ */
+void helpererror(char *errorstat, int errornum)
+{
+	errno = errornum;
+	perror(errorstat);
+	exit(2);
 }
 
 /**

@@ -37,10 +37,8 @@ int main(__attribute__((unused))int ac, char **av)
 		head = token(b, head);
 		if (!head)
 		{
-			errno = ENOMEM;
-			perror("head");
 			free(b);
-			exit(30);
+			helpererror("head", ENOMEM);
 		}
 		if (head->token[0] == '#')
 			comment = 1;
