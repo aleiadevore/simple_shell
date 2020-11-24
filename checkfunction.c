@@ -59,7 +59,7 @@ int checkfunction(list_t *head)
 void Exitfunc(list_t *head)
 {
 	free_list(&head);
-	exit(0);
+	exit(errno);
 }
 
 /**
