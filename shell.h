@@ -17,14 +17,12 @@ extern char **environ;
  * @token: The tokenized Path
  * @next: This is a pointer to the next node in the list
  * @cmdtok: This is a pointer that points to tokenized PATH
- * @envpth: This holds the Environmental PATH
  * Description: This is a singly linked list for the tokenized PATH
  */
 typedef struct list_t
 {
 	char *token;
 	char *cmdtok;
-	char *envpth;
 	struct list_t *next;
 
 } list_t;
@@ -45,7 +43,6 @@ list_t *tok_path(list_t *head);
 int excmd(list_t *head, char *cmd);
 char *append(list_t *head, char *cmd);
 char *_strstr(char *haystack, char *needle);
-int getenviron(char *name, list_t *node);
 int pathval(list_t *head);
 int _putchar(char c);
 int envfunction(list_t *head);
@@ -56,5 +53,4 @@ void helpexit(list_t *head);
 void error_handle(list_t *head, int count, char *av);
 void helpererror(char *errorstat, int errornum);
 int _itoa(int n);
-void rev_string(char *s);
 #endif

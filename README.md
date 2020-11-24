@@ -94,6 +94,9 @@ This file contians the files to check along the environmental variabel and path.
      pathval - This function validates that a file exists and then finaly executes.
 
      error_handle - This function handles the error output when a command is not found.
+
+     helpererror - This function helps handle errors from outside code.
+
 ## *Exit Status*
 
 The exits statsus tells where the program exited and by what depending on the number.
@@ -103,3 +106,6 @@ The exits statsus tells where the program exited and by what depending on the nu
     exit(4) - This status signifies that there was an error with malloc.
 
     exit(1) - this is an error that has to do with helper functions.
+## *_itoa*
+
+This function allows the user to make an intger into a string.
