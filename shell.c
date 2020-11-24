@@ -20,7 +20,6 @@ int main(__attribute__((unused))int ac, char **av)
 	while (1)
 	{
 		++lncount;
-		errno = 0;
 		head = NULL, b = NULL, comment = 0;
 		if (isatty(STDIN_FILENO) == 1)
 			write(STDOUT_FILENO, "$ ", 2);
@@ -28,7 +27,7 @@ int main(__attribute__((unused))int ac, char **av)
 		if (characters == EOF)
 		{
 			free(b);
-			exit(errno);
+			exit(0);
 		}
 		for (i = 0; b[i] != '\0'; i++)
 		{
