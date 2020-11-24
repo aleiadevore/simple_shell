@@ -166,8 +166,8 @@ void error_handle(list_t *head, int count, char *av)
 
 	errno = ENOENT;
 
-	write(STDOUT_FILENO, input, _strlen(input));
-	write(STDOUT_FILENO, ": ", 3);
+	write(STDERR_FILENO, input, _strlen(input));
+	write(STDERR_FILENO, ": ", 3);
 	_itoa(count);
 	write(STDERR_FILENO, ": ", 3);
 	perror(command);

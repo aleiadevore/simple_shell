@@ -13,7 +13,18 @@ int _itoa(int n)
 		count += _itoa(n / 10);
 	k = (n % 10) + '0';
 
-	_putchar(k + '\0');
+	_eputchar(k + '\0');
 
 	return (count);
+}
+
+/**
+ * _eputchar - prints character to standard error
+ * @c: character to print
+ * Return: write
+ */
+
+int _eputchar(char c)
+{
+	return (write(2, &c, 1));
 }
