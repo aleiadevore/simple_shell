@@ -27,7 +27,7 @@ int main(__attribute__((unused))int ac, char **av)
 		if (characters == EOF)
 		{
 			free(b);
-			exit(0);
+			exit(errno);
 		}
 		for (i = 0; b[i] != '\0'; i++)
 		{
