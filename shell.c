@@ -20,6 +20,7 @@ int main(__attribute__((unused))int ac, char **av)
 	while (1)
 	{
 		++lncount;
+		errno = 0;
 		head = NULL, b = NULL, comment = 0;
 		if (isatty(STDIN_FILENO) == 1)
 			write(STDOUT_FILENO, "$ ", 2);
